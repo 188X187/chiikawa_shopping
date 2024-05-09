@@ -1,21 +1,25 @@
-const CartList = () => {
+import { Toast } from "react-bootstrap";
 
-    const storageKeys = Object.keys(localStorage); 
+const CartList = () => {
+    const storageKeys = Object.keys(localStorage);
     const storageValues = storageKeys.map((key) => {
         try {
-            return JSON.parse(localStorage.getItem(key)); 
+        return JSON.parse(localStorage.getItem(key));
         } catch (error) {
-            return localStorage.getItem(key); 
+        return localStorage.getItem(key);
         }
     });
 
     return (
-        <>
-        {storageValues.map((item, index)=>(
-            <div key={index}>{item.title.replace(/[<b></b>]/g, '')}</div>))}
-        </>
-    )
-    
-}
+        <Toast>
+        <Toast.Header>
+            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+            <strong className="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+        </Toast.Header>
+        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+        </Toast>
+    );
+};
 
 export default CartList;
