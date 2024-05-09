@@ -10,8 +10,8 @@ export default function SearchModal(props) {
     const { setSearch } = useContext(DataContext)
 
     return (
-        <div className="searchModal">
-            <Button variant="outline-success"
+        <div className="searchModal" style={{zIndex : "1050"}} >
+            <Button variant="outline-success" 
                 onClick={
                     () => {
                         props.setModal(false)
