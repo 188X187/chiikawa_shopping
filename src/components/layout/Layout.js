@@ -1,8 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../common/Home";
 import GlobalNav from "../common/GlobalNav";
+import { useContext } from "react";
+import { DataContext } from "../../MainData";
 
-function Layout(){
+function Layout(){    
     return(
         <>
         <GlobalNav/>
