@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { DataContext } from "../../MainData";
 import List from "../list/List";
 import CartPage from "../cart/CartPage";
+import Detail from "../detail/Detail";
 
 function Layout(){    
     return(
@@ -13,7 +14,7 @@ function Layout(){
         <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="list" element={<List />}></Route>
-            <Route path="detail" element={<div>detail page 설정하시구연</div>}></Route>
+            <Route path="detail" element={<Detail/>}></Route>
             <Route path="cart" element={<CartPage/>}></Route>
         </Routes>
         </>
