@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { DataContext } from "../../MainData";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import OrderButton from "../cart/OrderButton";
 
 export default function List() {
 
@@ -24,7 +25,7 @@ export default function List() {
                         </Card.Body>
                         <ListGroup className="list-group-flush">
                             <ListGroup.Item>{item.lprice}원</ListGroup.Item>
-                            <ListGroup.Item variant="success">장바구니</ListGroup.Item>
+                            <ListGroup.Item variant="success"><OrderButton item={item}/></ListGroup.Item>
                         </ListGroup>
                     </Card>
                 </Col>

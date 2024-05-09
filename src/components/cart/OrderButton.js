@@ -26,7 +26,7 @@ const OrderButton = ({item}) =>{
     }
 
     return (
-        <div onClick={handleClick}>장바구니</div>
+        <div onClick={handleClick} style={{ cursor: "pointer" }}>장바구니</div>
     )
 }
 
