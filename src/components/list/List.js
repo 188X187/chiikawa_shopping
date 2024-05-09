@@ -6,7 +6,7 @@ export default function List() {
 
     const { data } = useContext(DataContext);
 
-    console.log(data[0])
+    // console.log(data[0]) 
 
     // 데이터가 비어 있는지 확인
     if (!data || data.length === 0) {
