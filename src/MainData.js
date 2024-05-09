@@ -16,12 +16,13 @@ export const DataContext = createContext();
 const MainData = ({ children }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
-  const [data, setData] = useState(initData);
+  const [search, setSearch] = useState('')
+  const [data, setData] = useState('');
   const [cart, setCart] = useState(null);
 
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와&filter=used:false&sort=sim&display=10&start=1`,
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&sort=sim&display=10&start=1`,
       {
         method: "GET",
         headers: {
@@ -37,7 +38,7 @@ const MainData = ({ children }) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ data, cart, setData, setCart }}>
+    <DataContext.Provider value={{ search, data, cart, setSearch, setData, setCart }}>
       {children}
     </DataContext.Provider>
   );

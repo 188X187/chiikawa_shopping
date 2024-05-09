@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { DataContext } from '../../MainData';
 
 export default function SearchModal(props) {
+    const [input, setInput] = useState('') 
+    const {search, setSearch} = useContext(DataContext)
     return (
         <div className="searchModal">
             <Button variant="outline-success"
@@ -17,8 +20,11 @@ export default function SearchModal(props) {
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
+                    onClick={(e)=>{
+                        setInput(e.target.value)
+                    }}
                 />
-                <Button variant="outline-success">Search</Button>
+                <Button variant="outline-success" onClick={()=>{setSearch(input)}}>Search</Button>
             </Form>
         </div>
     )
