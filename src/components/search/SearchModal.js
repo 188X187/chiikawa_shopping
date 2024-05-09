@@ -5,7 +5,7 @@ import { DataContext } from '../../MainData';
 
 export default function SearchModal(props) {
     const [input, setInput] = useState('') 
-    const {search, setSearch} = useContext(DataContext)
+    const { setSearch } = useContext(DataContext)
     return (
         <div className="searchModal">
             <Button variant="outline-success"
@@ -20,7 +20,8 @@ export default function SearchModal(props) {
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
-                    onClick={(e)=>{
+                    onChange={(e)=>{
+                        console.log(e.target.value)
                         setInput(e.target.value)
                     }}
                 />
