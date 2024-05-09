@@ -24,7 +24,7 @@ export default function SearchModal(props) {
                     className="me-2"
                     aria-label="Search"
                     onChange={(e) => {
-                        console.log(e.target.value)
+                        // console.log(e.target.value)
                         setInput(e.target.value)
                     }}
                 />
@@ -40,6 +40,7 @@ export default function SearchModal(props) {
                                     }
                                     else {
                                         setSearch(input)
+                                        props.setModal(!props.modal)
                                     }
                                 }}>Search</Button>
                         </Link>

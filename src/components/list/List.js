@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { DataContext } from "../../MainData";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import OrderButton from "../cart/OrderButton";
+import Filter from "../search/Filter";
 
 export default function List() {
 
@@ -15,6 +16,8 @@ export default function List() {
     }
 
     return (
+        <>
+        <Filter />
         <Row xs={1} md={3} className="g-4">
             {data.map((item, index) => (
                 <Col key={index}>
@@ -31,5 +34,6 @@ export default function List() {
                 </Col>
             ))}
         </Row>
+            </>
     )
 }
