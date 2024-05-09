@@ -35,7 +35,15 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
       });
-  }, [search, data, cart]);
+  }, [search, data]);
+
+  useEffect(()=>{
+    if(cart===null){
+        return
+    }
+    localStorage.setItem(`${cart.productId}`, JSON.stringify(cart))
+  },[cart])
+
 
   return (
     <DataContext.Provider value={{ search, data, cart, setSearch, setData, setCart }}>
