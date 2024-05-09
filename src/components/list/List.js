@@ -6,7 +6,7 @@ export default function List() {
 
     const { data } = useContext(DataContext);
 
-    console.log(data[0])
+    console.log(data)
 
     return (
         <Row xs={1} md={3} className="g-4">
