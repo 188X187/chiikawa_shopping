@@ -14,8 +14,8 @@ const initData = [
 export const DataContext = createContext();
 
 const MainData = ({ children }) => {
-  const clientId = "Fnb6JtyPj7fsRmDtC5MP";
-  const clientSecret = "YPnCj6VCQy";
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const [data, setData] = useState(initData);
   const [cart, setCart] = useState(null);
 
