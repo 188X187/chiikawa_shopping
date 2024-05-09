@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../common/Home";
+import Home from "../home/Home";
 import GlobalNav from "../common/GlobalNav";
 import { useContext } from "react";
 import { DataContext } from "../../MainData";
@@ -14,7 +14,7 @@ function Layout(){
         <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="list" element={<List />}></Route>
-            <Route path="detail" element={<Detail/>}></Route>
+            <Route path="detail" element={<Detail />}></Route>
             <Route path="cart" element={<CartPage/>}></Route>
         </Routes>
         </>

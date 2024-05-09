@@ -54,6 +54,7 @@ function GlobalNav() {
                                     onClick={() => {
                                         setModal(true)
                                     }}
+                                    readOnly
                                 />
                                 {/* <Button variant="outline-success">Search</Button> */}
                             </Form>
@@ -61,7 +62,7 @@ function GlobalNav() {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
-            {modal == true ? <SearchModal setModal={setModal}/> : ''}
+            { modal == true ? <SearchModal setModal={setModal} modal={modal}/> : '' }
         </>
     );
 }
