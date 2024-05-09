@@ -34,7 +34,7 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
       });
-  }, []);
+  }, [data, cart]);
 
   return (
     <DataContext.Provider value={{ data, cart, setData, setCart }}>
