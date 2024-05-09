@@ -3,7 +3,6 @@ import { DataContext } from "../../MainData";
 import { Card, Col, ListGroup, Row } from "react-bootstrap";
 import OrderButton from "../cart/OrderButton";
 import Filter from "../search/Filter";
-import { Button, Card, Col, Form, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function List() {
