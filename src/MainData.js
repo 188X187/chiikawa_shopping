@@ -14,14 +14,15 @@ const initData = [
 export const DataContext = createContext();
 
 const MainData = ({ children }) => {
-  const clientId = "Fnb6JtyPj7fsRmDtC5MP";
-  const clientSecret = "YPnCj6VCQy";
-  const [data, setData] = useState(initData);
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+  const [search, setSearch] = useState('')
+  const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
   const [cart, setCart] = useState(null);
 
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와&filter=used:false&sort=sim&display=10&start=1`,
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&sort=sim&display=10&start=1`,
       {
         method: "GET",
         headers: {
@@ -34,10 +35,10 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
       });
-  }, []);
+  }, [search, data, cart]);
 
   return (
-    <DataContext.Provider value={{ data, cart, setData, setCart }}>
+    <DataContext.Provider value={{ search, data, cart, setSearch, setData, setCart }}>
       {children}
     </DataContext.Provider>
   );

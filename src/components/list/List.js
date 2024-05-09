@@ -6,6 +6,11 @@ export default function List() {
 
     const { data } = useContext(DataContext);
 
+    // 데이터가 비어 있는지 확인
+    if (!data || data.length === 0) {
+        return <div>No data available</div>;
+    }
+
     return (
         <Row xs={1} md={3} className="g-4">
             {data.map((item, index) => (
