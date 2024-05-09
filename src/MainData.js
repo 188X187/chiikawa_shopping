@@ -18,6 +18,7 @@ const MainData = ({ children }) => {
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const [search, setSearch] = useState('')
   const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
+  const [detail, setDetail] = useState('');
   const [cart, setCart] = useState(null);
 
   useEffect(() => {
@@ -35,10 +36,10 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
       });
-  }, [search, data, cart]);
+  }, [search, data, detail, cart]);
 
   return (
-    <DataContext.Provider value={{ search, data, cart, setSearch, setData, setCart }}>
+    <DataContext.Provider value={{ search, data, detail, cart, setSearch, setData, setDetail, setCart }}>
       {children}
     </DataContext.Provider>
   );

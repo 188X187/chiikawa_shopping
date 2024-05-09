@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function List() {
 
-    const { data, setData } = useContext(DataContext);
-    const [list, setList] = useState(data);
-
-    // console.log(data)
-    // console.log(list);
+    const { data, setDetail } = useContext(DataContext);
 
     // 데이터가 비어 있는지 확인
     if (!data || data.length === 0) {
@@ -26,7 +22,9 @@ export default function List() {
                             <Card.Body>
                                 <Card.Title style={{ wordBreak: 'keep-all', height: '7rem'}}>{item.title.replace(/[<b></b>]/g, '')}</Card.Title>
                                 <Card.Title style={{padding: '5%'}}>{item.lprice}원</Card.Title>
-                                <Button variant="secondary">상세보기</Button>{' '}
+                                {/* <Link to={'/detail'}> */}
+                                <Button variant="secondary" onClick={() => {setDetail(item)}}>상세보기</Button>{' '}
+                                {/* </Link> */}
                                 <Button variant="success">장바구니</Button>{' '}
                             </Card.Body>
                         </Card>
