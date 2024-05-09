@@ -20,10 +20,11 @@ const MainData = ({ children }) => {
   const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
   const [detail, setDetail] = useState('');
   const [cart, setCart] = useState(null);
+  const [params, setParams] = useState('')
 
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와${search}&filter=used:false&sort=sim&display=10&start=1`,
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=10&start=1${params}`,
       {
         method: "GET",
         headers: {
@@ -36,10 +37,20 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
       });
-  }, [search, data, detail, cart]);
+  }, [search, params]);
+
+
+
+  useEffect(()=>{
+    if(cart===null){
+        return
+    }
+    localStorage.setItem(`${cart.productId}`, JSON.stringify(cart))
+  },[cart])
+
 
   return (
-    <DataContext.Provider value={{ search, data, detail, cart, setSearch, setData, setDetail, setCart }}>
+    <DataContext.Provider value={{ search, data, cart, params, setSearch, setData, setCart, setParams }}>
       {children}
     </DataContext.Provider>
   );

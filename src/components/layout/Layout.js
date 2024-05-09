@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../common/Home";
+import Home from "../home/Home";
 import GlobalNav from "../common/GlobalNav";
 import { useContext } from "react";
 import { DataContext } from "../../MainData";
