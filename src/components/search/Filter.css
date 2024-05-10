@@ -1,0 +1,14 @@
+.filterContainer {
+    border: 1px solid red;
+    box-sizing: border-box;
+    background-color:  white;
+    width: 100px;
+    height: 800px;
+    position: fixed;
+    z-index: 1000;
+}
+
+.filter {
+    border-bottom: 1px solid rgb(43, 43, 43, .3);
+    padding: 20px 10px;
+}

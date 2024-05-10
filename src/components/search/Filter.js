@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { DataContext } from '../../MainData';
 import FilterPrice from './FilterPrice';
+import './Filter.css'
 
 export default function Filter() {
     // const [params, setParams] = useState('')
@@ -11,8 +12,8 @@ export default function Filter() {
     ))
 
     return (
-        <>
-            <div>
+        <div className='filterContainer'>
+            <div className='filter'>
                 <h4>카테고리</h4>
                 <div>
                     {filterCategory.map((item, i) => {
@@ -41,7 +42,7 @@ export default function Filter() {
                 </div>
             </div>
 
-            <div>
+            <div className='filter'>
                 <h4>가격</h4>
                 <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter)}}}/>전체</label>
                 <FilterPrice title={"~1만원"} startPrice={"0"} endPrice={"10000"} />
@@ -67,6 +68,6 @@ export default function Filter() {
                         }
                     }} />내림차순 정렬</label>
             </div>
-        </>
+        </div>
     )
 }
