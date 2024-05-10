@@ -37,18 +37,21 @@ export default function List() {
                 {currentItems.map((item, index) => (
                     <Col key={index}>
                         <Card style={{ width: '18rem', height: '30rem' }}>
+                            <Link to={'/detail'} onClick={() => {setDetail(item)}}>
                             <Card.Img variant="top" src={item.image} style={{ height: '15rem' }} />
+                            </Link>
+
                             <Card.Body>
+                                <Link to={'/detail'} onClick={() => {setDetail(item)}}>
                                 <Card.Title style={{ wordBreak: 'keep-all', height: '7rem' }}>
                                     {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
                                 </Card.Title>
                                 <Card.Title style={{ padding: '3%' }}>{item.lprice}원</Card.Title>
-                                <Link to={'/detail'}>
-                                    <Button variant="secondary" onClick={() => {
-                                        setDetail(item)
-                                    }}>상세보기</Button>{' '}
+                                    <Button variant="secondary">상세보기</Button>{' '}
                                 </Link>
+
                                 <Button variant="success"><OrderButton item={item} /></Button>
+
                             </Card.Body>
                         </Card>
                     </Col>
