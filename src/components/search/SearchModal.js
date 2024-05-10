@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { DataContext } from '../../MainData';
@@ -8,10 +8,24 @@ import './SearchModal.css';
 export default function SearchModal(props) {
     const [input, setInput] = useState('')
     const { setSearch } = useContext(DataContext)
+    const [searchHistory, setSearchHistory] = useState('')
+
+    const searchHistoryLC = localStorage.getItem("search")
+    console.log(searchHistoryLC)
+    // const searchHistoryLCreplace = searchHistoryLC.replace(/[""]/g, '')
+    // console.log(searchHistoryLCreplace)
+
+    useEffect(() => {
+        // 컴포넌트가 마운트될 때 로컬 스토리지에서 검색 기록 불러오기
+        const storedSearch = localStorage.getItem("search");
+        if (storedSearch) {
+            setSearchHistory(JSON.parse(storedSearch));
+        }
+    }, []); // 한 번만 실행
 
     return (
-        <div className="searchModal" style={{zIndex : "1050"}} >
-            <Button variant="outline-success" 
+        <div className="searchModal" style={{ zIndex: "1050" }} >
+            <Button variant="outline-success"
                 onClick={
                     () => {
                         props.setModal(false)
@@ -33,19 +47,24 @@ export default function SearchModal(props) {
                 {
                     input ?
                         (
-                        <Link to='list'>
-                            <Button variant="outline-success" onClick={() => {
+                            <Link to='list'>
+                                <Button variant="outline-success" onClick={() => {
                                     if (input == '') {
                                         alert("검색어를 입력해주세요.")
                                     }
                                     else {
                                         setSearch(input)
                                         props.setModal(!props.modal)
+
+                                        // 새로운 검색어를 searchHissetSearchHistory에 추가한 후 로컬 스토리지에 저장
+                                        const updatedSearchHistory = [...searchHistory, input];
+                                        setSearchHistory(updatedSearchHistory);
+                                        localStorage.setItem("search", JSON.stringify(updatedSearchHistory));
                                     }
                                 }}>Search</Button>
-                        </Link>
+                            </Link>
                         ) : (
-                        <Button variant="outline-success" onClick={() => {
+                            <Button variant="outline-success" onClick={() => {
                                 if (input == '') {
                                     alert("검색어를 입력해주세요.")
                                 }
@@ -53,10 +72,13 @@ export default function SearchModal(props) {
                                     setSearch(input)
                                 }
                             }}>
-                            Search</Button>
+                                Search</Button>
                         )
                 }
             </Form>
+            <div>
+                ㅎㅇ
+            </div>
         </div>
     )
 }
