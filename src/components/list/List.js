@@ -4,6 +4,7 @@ import { Button, Card, Col, ListGroup, Pagination, Row } from "react-bootstrap";
 import OrderButton from "../cart/OrderButton";
 import Filter from "../search/Filter";
 import { Link } from "react-router-dom";
+import Detail from "../detail/Detail";
 
 export default function List() {
 
