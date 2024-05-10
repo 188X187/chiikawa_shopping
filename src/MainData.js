@@ -21,7 +21,16 @@ const MainData = ({ children }) => {
   const [filter, setFilter] = useState([])
   const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
   const [detail, setDetail] = useState('');
-  const [cart, setCart] = useState(null);
+  const [carts, setCarts] = useState(() => {
+    // 초기 로드 시 localStorage에서 데이터 가져오기
+    const savedCarts = localStorage.getItem("carts");
+    return savedCarts ? JSON.parse(savedCarts) : [];
+  });
+  const [localcarts, setLocalcarts] = useState(() => {
+    // 초기 로드 시 localStorage에서 데이터 가져오기
+    const savedCarts = localStorage.getItem("carts");
+    return savedCarts ? JSON.parse(savedCarts) : [];
+  });
   const [params, setParams] = useState('')
 
   useEffect(() => {
@@ -44,12 +53,14 @@ const MainData = ({ children }) => {
 
 
 
-  useEffect(()=>{
-    if(cart===null){
-        return
+  useEffect(() => {
+    if (carts.length > 0) {
+      localStorage.setItem('carts', JSON.stringify(carts));
+    } else {
+      localStorage.removeItem('carts');
     }
-    localStorage.setItem(`${cart.productId}`, JSON.stringify(cart))
-  },[cart])
+    setLocalcarts(carts);
+  }, [carts]);
 
 
   return (
