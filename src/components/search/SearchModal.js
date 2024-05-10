@@ -16,9 +16,6 @@ export default function SearchModal(props) {
     const searchHistoryLC = localStorage.getItem("search")
     const search = JSON.parse(searchHistoryLC);
 
-    // const searchHistoryLCreplace = searchHistoryLC.replace(/[""]/g, '')
-    // console.log(searchHistoryLCreplace)
-
     useEffect(() => {
         // 컴포넌트가 마운트될 때 로컬 스토리지에서 검색 기록 불러오기
         const storedSearch = localStorage.getItem("search");
@@ -81,7 +78,14 @@ export default function SearchModal(props) {
                 }
             </Form>
             <div>
-                {search[1]}
+
+                {
+                    search.map((a) => {
+                        return (
+                            <h4>{a}</h4>
+                        )
+                    })
+                }
             </div>
         </div>
     )
