@@ -12,7 +12,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
     const handlePlusClick = () => {
         setCount(count + 1);
         if(isChecked(item.productId)){
-            handleCheck(true, item.productId, count+1);
+            handleCheck(true, item.productId, item.lprice * (count+1));
         }
     }
 
@@ -22,7 +22,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
         }
         setCount(count - 1);
         if(isChecked(item.productId)){
-            handleCheck(true, item.productId, count-1);
+            handleCheck(true, item.productId, item.lprice * (count-1));
         }
     }
 
@@ -35,7 +35,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
 
     return (
         <section className={styles.cart_product_list}>
-        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, count)}}/>
+        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, item.lprice * count)}}/>
         <div className={styles.cart_product_wrap}>
             <div className={styles.cart_product_image}>
                 <img src={item.image} alt="product-img" />
