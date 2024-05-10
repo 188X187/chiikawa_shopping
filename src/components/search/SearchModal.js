@@ -81,7 +81,7 @@ export default function SearchModal(props) {
                 }
             </Form>
             <div>
-                {search[1]}
+            
             </div>
         </div>
     )

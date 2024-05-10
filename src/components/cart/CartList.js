@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "../../css/cart.module.css";
+import { DataContext } from "../../MainData";
 
 const CartList = ({item, onOff, setOnOff}) => {
 
+    const getCarts = localStorage.getItem("carts")
+    const carts = JSON.parse(getCarts);
     const [count, setCount] = useState(1);
+    const {setCarts} = useContext(DataContext);
 
     const handlePlusClick = () => {
         setCount(count + 1)
@@ -17,8 +21,9 @@ const CartList = ({item, onOff, setOnOff}) => {
     }
 
     const handleRemoveClick = () => {
-        localStorage.removeItem(item.productId);
-        setOnOff(!onOff);
+        
+        const update = carts.filter(cart => cart.productId !== item.productId);
+        setCarts(update);
     }
 
     return (

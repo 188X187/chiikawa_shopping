@@ -17,9 +17,18 @@ const MainData = ({ children }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const [search, setSearch] = useState('')
-  const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
+  const [data, setData] = useState(''); 
   const [detail, setDetail] = useState('');
-  const [cart, setCart] = useState(null);
+  const [carts, setCarts] = useState(() => {
+    // 초기 로드 시 localStorage에서 데이터 가져오기
+    const savedCarts = localStorage.getItem("carts");
+    return savedCarts ? JSON.parse(savedCarts) : [];
+  });
+  const [localcarts, setLocalcarts] = useState(() => {
+    // 초기 로드 시 localStorage에서 데이터 가져오기
+    const savedCarts = localStorage.getItem("carts");
+    return savedCarts ? JSON.parse(savedCarts) : [];
+  });
   const [params, setParams] = useState('')
 
   useEffect(() => {
@@ -41,16 +50,18 @@ const MainData = ({ children }) => {
 
 
 
-  useEffect(()=>{
-    if(cart===null){
-        return
+  useEffect(() => {
+    if (carts.length > 0) {
+      localStorage.setItem('carts', JSON.stringify(carts));
+    } else {
+      localStorage.removeItem('carts');
     }
-    localStorage.setItem(`${cart.productId}`, JSON.stringify(cart))
-  },[cart])
+    setLocalcarts(carts);
+  }, [carts]);
 
 
   return (
-    <DataContext.Provider value={{ search, data, detail, cart, params, setSearch, setData, setDetail, setCart, setParams }}>
+    <DataContext.Provider value={{ search, data, detail, carts, params, localcarts, setSearch, setData, setDetail, setCarts, setParams , setLocalcarts}}>
       {children}
     </DataContext.Provider>
   );

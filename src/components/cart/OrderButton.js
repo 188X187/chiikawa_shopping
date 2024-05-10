@@ -3,26 +3,33 @@ import { DataContext } from "../../MainData";
 
 const OrderButton = ({item}) =>{
 
-    const {setCart} = useContext(DataContext);
+    const {carts, setCarts} = useContext(DataContext);
 
     const handleClick = () => {
-        setCart({
-            category1: item.category1,
-            category2: item.category2,
-            category3: item.category3,
-            category4: item.category4,
-            hprice: item.hprice,
-            image: item.image,
-            link: item.link,
-            lprice: item.lprice,
-            maker: item.maker,
-            mallName: item.mallName,
-            productId: item.productId,
-            productType: item.productType,
-            title: item.title,
-            
-            });
-        alert("장바구니에 추가되었습니다");
+
+        const isExist = carts.some(cart=>cart.productId === item.productId)
+
+        if(isExist){
+            alert("이미 장바구니에 존재하는 상품입니다.");
+        }
+        else{
+            setCarts([...carts, {
+                category1: item.category1,
+                category2: item.category2,
+                category3: item.category3,
+                category4: item.category4,
+                hprice: item.hprice,
+                image: item.image,
+                link: item.link,
+                lprice: item.lprice,
+                maker: item.maker,
+                mallName: item.mallName,
+                productId: item.productId,
+                productType: item.productType,
+                title: item.title,
+                }]);
+            alert("장바구니에 추가되었습니다");
+        }
     }
 
     return (
