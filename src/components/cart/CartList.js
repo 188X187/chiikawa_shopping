@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "../../css/cart.module.css";
 
-const CartList = () => {
+const CartList = ({item}) => {
 
     const [count, setCount] = useState(1);
 
@@ -16,18 +16,8 @@ const CartList = () => {
         setCount(count - 1)
     }
 
-    const storageKeys = Object.keys(localStorage);
-    const storageValues = storageKeys.map((key) => {
-        try {
-        return JSON.parse(localStorage.getItem(key));
-        } catch (error) {
-        return localStorage.getItem(key);
-        }
-    });
-
     return (
-        <>
-        {storageValues.map((item, index)=>(<section className={styles.cart_product_list}>
+        <section className={styles.cart_product_list}>
         <input type="checkbox" />
         <div className={styles.cart_product_wrap}>
             <div className={styles.cart_product_image}>
@@ -35,7 +25,7 @@ const CartList = () => {
             </div>
 
             <div className={styles.cart_product_info}>
-            <p className={styles.seller_store}>{item.title.replace(/[<b></b>]/g, '')}</p>
+            <p className={styles.seller_store}>{item.title}</p>
             <p className={styles.price}>{item.lprice}원</p>
             <p className={styles.delivery}>택배배송 / 무료배송</p>
             </div>
@@ -49,10 +39,7 @@ const CartList = () => {
             </div>
             <img className={styles.plus} onClick={handlePlusClick} src="/images/icon-plus-line.svg" alt="plus"/>
         </div>
-        </section>))}
-        </>
-
-        
+        </section>
     );
 };
 
