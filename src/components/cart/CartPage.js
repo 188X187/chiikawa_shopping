@@ -1,24 +1,67 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartList from "./CartList";
 import CartResult from "./CartResult";
 import { DataContext } from "../../MainData";
+import CartHeader from "./CartHeader";
+import styles from "../../css/cart.module.css";
 
 
 const CartPage = () => {
 
     const { localcarts } = useContext(DataContext);
+    const [checklists, setChecklists] = useState([]);
 
-    console.log(localcarts)
+    useEffect(()=>{console.log(checklists)})
+
+    const handleCheck = (checked, productId, count) => {
+        if (checked) {
+            const itemIndex = checklists.findIndex((list) => list.productId === productId);
+            if (itemIndex !== -1) {
+                // 기존 항목이 있는 경우 수량 업데이트
+                const updatedChecklists = [...checklists];
+                updatedChecklists[itemIndex].count = count;
+                setChecklists(updatedChecklists);
+            } else {
+                // 새로운 항목 추가
+                setChecklists([...checklists, { productId, count }]);
+            }
+        }
+        else{
+            setChecklists(checklists.filter((list)=>list.productId!==productId));
+        }
+    }
+
+    const handleAllCheck = (checked) => {
+        if(checked){
+            
+        }
+        else{
+
+        }
+    }
+
+    const isChecked = (productId) => {
+        return checklists.some((list) => list.productId === productId);
+    }
 
     return (
         <>
+        <CartHeader handleAllCheck={handleAllCheck}/>
         {
         localcarts.length > 0 ? 
-            localcarts.map((item)=><CartList key={item.productId} item={item} />)
+            localcarts.map((item)=><CartList key={item.productId} item={item} handleCheck={handleCheck} isChecked={isChecked}/>)
         :
-            <div>장바구니가 비었습니다</div>
+            <div className={styles.not}>
+                <h2>장바구니에 담긴 상품이 없습니다.</h2>
+                <p>원하는 상품을 장바구니에 담아보세요!</p>
+            </div>
         }
-        <CartResult />
+        {
+        localcarts.length > 0 ? 
+            <CartResult />
+        :
+            ""
+        }
         </>
     )
 
