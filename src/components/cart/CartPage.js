@@ -58,7 +58,7 @@ const CartPage = () => {
         }
         {
         localcarts.length > 0 ? 
-            <CartResult />
+            <CartResult checklists={checklists}/>
         :
             ""
         }

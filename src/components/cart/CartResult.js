@@ -1,11 +1,20 @@
+import { useEffect, useState } from "react";
 import styles from "../../css/cart.module.css";
 
-const CartResult = () => {
+const CartResult = ({checklists}) => {
+
+    const [cash, setCash] = useState(0);
+
+    useEffect(()=>{
+        const total = checklists.reduce((acc, list)=>acc+list.lprice, 0);
+        setCash(total);
+    }, [checklists])
+
     return (
         <div className={styles.total}>
         <div className={styles.total_price}>
             <p className={styles.cart_product_total_price}>총 상품 금액</p>
-            <p className={styles.cart_product_price}>0</p>
+            <p className={styles.cart_product_price}>{cash}원</p>
         </div>
 
         <div className={styles.pay_minus}>
@@ -21,7 +30,9 @@ const CartResult = () => {
 
         <div className={styles.delivery}>
             <p className={styles.cart_product_delivery}>배송비</p>
-            <p className={styles.cart_product_delivery_price}>0</p>
+            <p className={styles.cart_product_delivery_price}>
+                {checklists.length > 0 ? "3000원" : "0"}
+            </p>
         </div>
 
         
