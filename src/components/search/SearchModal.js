@@ -16,9 +16,6 @@ export default function SearchModal(props) {
     const searchHistoryLC = localStorage.getItem("search")
     const search = JSON.parse(searchHistoryLC);
 
-    // const searchHistoryLCreplace = searchHistoryLC.replace(/[""]/g, '')
-    // console.log(searchHistoryLCreplace)
-
     useEffect(() => {
         // 컴포넌트가 마운트될 때 로컬 스토리지에서 검색 기록 불러오기
         const storedSearch = localStorage.getItem("search");
@@ -29,13 +26,16 @@ export default function SearchModal(props) {
 
     return (
         <div className="searchModal" style={{ zIndex: "1050" }} >
-            <Button variant="outline-success"
-                onClick={
-                    () => {
-                        props.setModal(false)
-                    }
-                }>×</Button>
-            <Form className="d-flex">
+            <Form className="d-flex" style={{ width: "80%", maxWidth: "800px", margin: "auto", marginTop: "100px" }}>
+                {/* 닫기버튼 */}
+                <Button variant="danger" className='closeBtn'
+                    onClick={
+                        () => {
+                            props.setModal(false)
+                        }
+                    }>＜</Button>
+
+                {/* 서치 인풋 & 서치 버튼 */}
                 <Form.Control
                     type="search"
                     placeholder="Search"
@@ -80,8 +80,27 @@ export default function SearchModal(props) {
                         )
                 }
             </Form>
+
+            {/* 최근 검색 목록 */}
             <div>
-            
+                {
+                    search ?
+                        search.map((item, index) => {
+                            return (
+                                <>
+                                    <Button variant="dark" key={index} onClick={() => { setSearch(item); props.setModal(!props.modal) }} style={{ margin: "20px" }}>{item}</Button>
+                                </>
+                            )
+                        })
+                        : ''
+                }
+                {/* 검색 목록 삭제 */}
+                <p
+                    onClick={() => {
+                        localStorage.removeItem("search");
+                        props.setModal(!props.modal)
+                    }}
+                    style={{ cursor: "pointer", margin: "20px" }}>검색 목록 삭제</p>
             </div>
         </div>
     )
