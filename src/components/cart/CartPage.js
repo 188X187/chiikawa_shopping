@@ -13,17 +13,17 @@ const CartPage = () => {
 
     useEffect(()=>{console.log(checklists)})
 
-    const handleCheck = (checked, productId, count) => {
+    const handleCheck = (checked, productId, lprice) => {
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
             if (itemIndex !== -1) {
                 // 기존 항목이 있는 경우 수량 업데이트
                 const updatedChecklists = [...checklists];
-                updatedChecklists[itemIndex].count = count;
+                updatedChecklists[itemIndex].lprice = lprice;
                 setChecklists(updatedChecklists);
             } else {
                 // 새로운 항목 추가
-                setChecklists([...checklists, { productId, count }]);
+                setChecklists([...checklists, { productId, lprice }]);
             }
         }
         else{
@@ -33,7 +33,7 @@ const CartPage = () => {
 
     const handleAllCheck = (checked) => {
         if(checked){
-            
+
         }
         else{
 
@@ -58,7 +58,7 @@ const CartPage = () => {
         }
         {
         localcarts.length > 0 ? 
-            <CartResult />
+            <CartResult checklists={checklists}/>
         :
             ""
         }
