@@ -26,7 +26,7 @@ export default function SearchModal(props) {
 
     return (
         <div className="searchModal" style={{ zIndex: "1050" }} >
-            <Button variant="outline-success"
+            <Button variant="outline-success" className='closeBtn'
                 onClick={
                     () => {
                         props.setModal(false)
@@ -80,11 +80,13 @@ export default function SearchModal(props) {
             <div>
 
                 {
+                    search ? 
                     search.map((item, index) => {
                         return (
-                            <h4 key={index}>{item}</h4>
+                            <h4 key={index} onClick={() => { setSearch(item) }} style={{cursor:"pointer"}}>{item}</h4>
                         )
                     })
+                    : ''
                 }
             </div>
         </div>
