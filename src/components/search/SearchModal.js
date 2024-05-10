@@ -6,12 +6,16 @@ import { Link } from 'react-router-dom';
 import './SearchModal.css';
 
 export default function SearchModal(props) {
+
+
+
     const [input, setInput] = useState('')
     const { setSearch } = useContext(DataContext)
     const [searchHistory, setSearchHistory] = useState('')
 
     const searchHistoryLC = localStorage.getItem("search")
-    console.log(searchHistoryLC)
+    const search = JSON.parse(searchHistoryLC);
+
     // const searchHistoryLCreplace = searchHistoryLC.replace(/[""]/g, '')
     // console.log(searchHistoryLCreplace)
 
@@ -77,7 +81,7 @@ export default function SearchModal(props) {
                 }
             </Form>
             <div>
-                ㅎㅇ
+                {search[1]}
             </div>
         </div>
     )
