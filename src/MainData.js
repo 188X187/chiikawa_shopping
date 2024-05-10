@@ -64,7 +64,7 @@ const MainData = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, cart, params, setSearch, setFilter, setData, setDetail, setCart, setParams }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, localcarts, setLocalcarts, setSearch, setFilter, setData, setDetail, setCarts, setParams }}>
       {children}
     </DataContext.Provider>
   );
