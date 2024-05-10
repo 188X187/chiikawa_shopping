@@ -83,7 +83,7 @@ export default function SearchModal(props) {
                     search ? 
                     search.map((item, index) => {
                         return (
-                            <h4 key={index} onClick={() => { setSearch(item) }} style={{cursor:"pointer"}}>{item}</h4>
+                            <h4 key={index} onClick={() => { setSearch(item); props.setModal(!props.modal) }} style={{cursor:"pointer"}}>{item}</h4>
                         )
                     })
                     : ''
