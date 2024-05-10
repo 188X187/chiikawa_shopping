@@ -36,8 +36,8 @@ const MainData = ({ children }) => {
     )
       .then((res) => res.json())
       .then((json) => {
-        setData(json.items);
-        setFilter(json.items)
+        setData(json.items); // list에서 필요한 데이터
+        setFilter(json.items); // filter에서 필요한 데이터
       });
   }, [search, detail, params]);
 

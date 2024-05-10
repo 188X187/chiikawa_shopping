@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { DataContext } from '../../MainData';
+import FilterPrice from './FilterPrice';
 
 export default function Filter() {
     // const [params, setParams] = useState('')
@@ -38,10 +39,16 @@ export default function Filter() {
                         return null;
                     })}
                 </div>
-
             </div>
+
             <div>
                 <h4>가격</h4>
+                <FilterPrice title={"~1만원"} startPrice={"0"} endPrice={"10000"} />
+                <FilterPrice title={"1~2만원"} startPrice={"10000"} endPrice={"20000"} />
+                <FilterPrice title={"2~3만원"} startPrice={"20000"} endPrice={"30000"} />
+                <FilterPrice title={"3~4만원"} startPrice={"30000"} endPrice={"40000"} />
+                <FilterPrice title={"4~5만원"} startPrice={"40000"} endPrice={"50000"} />
+                <FilterPrice title={"5만원~"} startPrice={"50000"} endPrice={"1000000000"} />
                 <label><input type="checkbox" name="price"
                     onChange={(e) => {
                         if (e.target.checked) {
