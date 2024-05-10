@@ -9,6 +9,9 @@ export default function List() {
 
     const { data, setDetail } = useContext(DataContext);
 
+    // 디버깅용
+    console.log(data)
+
     // 데이터가 비어 있는지 확인
     if (!data || data.length === 0) {
         return <div>No data available</div>;

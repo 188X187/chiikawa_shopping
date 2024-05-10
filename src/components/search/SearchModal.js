@@ -80,9 +80,9 @@ export default function SearchModal(props) {
             <div>
 
                 {
-                    search.map((a) => {
+                    search.map((item, index) => {
                         return (
-                            <h4>{a}</h4>
+                            <h4 key={index}>{item}</h4>
                         )
                     })
                 }
