@@ -8,7 +8,7 @@ export default function FilterPrice(props){
     return(
             <label>
                 <input
-                    type='checkbox'
+                type='radio' name="price"
                     onChange={(e) => {
                         if (e.target.checked && props.startPrice && props.endPrice) {
                             const price = filter.filter((item) => 

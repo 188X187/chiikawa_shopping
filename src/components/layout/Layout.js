@@ -6,6 +6,7 @@ import { DataContext } from "../../MainData";
 import List from "../list/List";
 import CartPage from "../cart/CartPage";
 import Detail from "../detail/Detail";
+import ListPage from "../list/ListPage";
 
 function Layout(){    
     return(
@@ -13,7 +14,7 @@ function Layout(){
         <GlobalNav/>
         <Routes>
             <Route path="/" element={<Home/>}></Route>
-            <Route path="list" element={<List />}></Route>
+            <Route path="list" element={<ListPage />}></Route>
             <Route path="detail" element={<Detail />}></Route>
             <Route path="cart" element={<CartPage/>}></Route>
         </Routes>

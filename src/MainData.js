@@ -18,7 +18,7 @@ const MainData = ({ children }) => {
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   // const [url, setUrl] = useState('')
   const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState([])
   const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
   const [detail, setDetail] = useState('');
   const [cart, setCart] = useState(null);

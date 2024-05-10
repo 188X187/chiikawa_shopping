@@ -19,7 +19,6 @@ export default function List() {
 
     return (
         <>
-            <Filter />
             <Row xs={1} md={3} className="g-4">
                 {data.map((item, index) => (
                     <Col key={index}>
