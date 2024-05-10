@@ -24,9 +24,11 @@ const CartResult = () => {
             <p className={styles.cart_product_delivery_price}>0</p>
         </div>
 
-        <div className={styles.payment}>
-            <p className={styles.cart_product_payment}>결제 예정 금액</p>
-            <p className={styles.cart_product_payment_price}>0</p>
+        
+
+        <div className={styles.cart_product_price}>
+            <p className={styles.total_price}></p>
+            <button className={styles.btn_submit}>주문</button>
         </div>
         </div>
     );
