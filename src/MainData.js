@@ -17,6 +17,7 @@ const MainData = ({ children }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState('')
   const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
   const [detail, setDetail] = useState('');
   const [cart, setCart] = useState(null);
@@ -36,6 +37,7 @@ const MainData = ({ children }) => {
       .then((res) => res.json())
       .then((json) => {
         setData(json.items);
+        setFilter(json.items)
       });
   }, [search, detail, params]);
 
@@ -50,7 +52,7 @@ const MainData = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ search, data, detail, cart, params, setSearch, setData, setDetail, setCart, setParams }}>
+    <DataContext.Provider value={{ search, filter, data, detail, cart, params, setSearch, setFilter, setData, setDetail, setCart, setParams }}>
       {children}
     </DataContext.Provider>
   );

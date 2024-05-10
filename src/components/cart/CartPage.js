@@ -1,27 +1,27 @@
-import { useContext } from "react";
-import { DataContext } from "../../MainData";
+import { useState } from "react";
+import CartList from "./CartList";
+import CartResult from "./CartResult";
 
 const CartPage = () => {
 
-    const storageKeys = Object.keys(localStorage); 
+    const [onOff, setOnOff] = useState(false);
+
+    const storageKeys = Object.keys(localStorage);
     const storageValues = storageKeys.map((key) => {
-    try {
-        return JSON.parse(localStorage.getItem(key)); 
-    } catch (error) {
-        return localStorage.getItem(key); 
-    }
-});
+        try {
+        return JSON.parse(localStorage.getItem(key));
+        } catch (error) {
+        return localStorage.getItem(key);
+        }
+    });
+
     return (
         <>
-            {
-            localStorage.length == 0 ?
-                <div>장바구니가 비었습니다</div>
-            :
-                <div></div>
-            }
+        {storageValues.map((item, index)=><CartList key={index} item={item} onOff={onOff} setOnOff={setOnOff}/>)}
+        <CartResult />
         </>
     )
-    
+
 }
 
 export default CartPage;

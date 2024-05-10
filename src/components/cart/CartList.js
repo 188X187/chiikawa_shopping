@@ -1,5 +1,60 @@
-const CartList = () => {
-    
-}
+import { useState } from "react";
+import styles from "../../css/cart.module.css";
+
+const CartList = ({item, onOff, setOnOff}) => {
+
+    const [count, setCount] = useState(1);
+
+    const handlePlusClick = () => {
+        setCount(count + 1)
+    }
+
+    const handleMinusClick = () => {
+        if (count == 1){
+            return
+        }
+        setCount(count - 1)
+    }
+
+    const handleRemoveClick = () => {
+        localStorage.removeItem(item.productId);
+        setOnOff(!onOff);
+    }
+
+    return (
+        <section className={styles.cart_product_list}>
+        <input type="checkbox" />
+        <div className={styles.cart_product_wrap}>
+            <div className={styles.cart_product_image}>
+                <img src={item.image} alt="product-img" />
+            </div>
+
+            <div className={styles.cart_product_info}>
+                <p className={styles.seller_store}>{item.title.replace(/[<b></b>]/g, '')}</p>
+                <p className={styles.price}>{item.lprice * count}원</p>
+                <p className={styles.delivery}>택배배송 / 무료배송</p>
+            </div>
+        </div>
+
+        <div className={styles.cart_product_count}>
+            <img className={styles.minus} onClick={handleMinusClick} src="/images/icon-minus-line.svg" alt="minus" />
+
+            <div className={styles.count}>
+                <span>{count}</span>
+            </div>
+            <img className={styles.plus} onClick={handlePlusClick} src="/images/icon-plus-line.svg" alt="plus"/>
+        </div>
+
+        <div className={styles.cart_product_price}>
+            <p className={styles.total_price}></p>
+            <button className={styles.btn_submit}>주문</button>
+        </div>
+
+        <div className={styles.product_remove}>
+            <img onClick={handleRemoveClick} src="/images/icon-delete.svg" alt="delete"/>
+        </div>
+        </section>
+    );
+};
 
 export default CartList;

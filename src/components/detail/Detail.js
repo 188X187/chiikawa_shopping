@@ -10,7 +10,10 @@ export default function Detail() {
             localStorage.setItem('DetailData', JSON.stringify(detail))
             setInfoData(detail)
         }
-        const localData = localStorage.getItem('DetailData')
+
+        const localData = localStorage.getItem('DetailData');
+        
+        // 로컬스토리지에 데이터가 변경되면 infoData에 그 데이터 저장
         if (localData) {
             setInfoData(JSON.parse(localData))
         }
@@ -19,6 +22,7 @@ export default function Detail() {
     return (
         <Card style={{ width: '45rem', height: '40rem', margin: 'auto' }}>
             <Card.Title className='p-3'>{infoData && infoData.title.replace(/[<b></b>]/g, '')}</Card.Title>
+            <Card.Title className='p-3'style={{ wordBreak: 'keep-all' }}>{infoData.title.replace(/[<b></b>]/g, '')}</Card.Title>
             <Card.Body>
                 <Card.Img style={{ width: '25rem' }} className='Infocardimg' variant="top" src={infoData && infoData.image} />
                 <Card.Title style={{ padding: '3%' }}>{infoData && infoData.lprice}원</Card.Title>
