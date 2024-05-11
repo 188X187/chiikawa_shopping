@@ -1,10 +1,8 @@
 import { useContext, useState } from "react"
 import { DataContext } from "../../MainData";
-import { Button, Card, Col, ListGroup, Pagination, Row } from "react-bootstrap";
+import { Button, Card, Col, Pagination, Row } from "react-bootstrap";
 import OrderButton from "../cart/OrderButton";
-import Filter from "../search/Filter";
 import { Link } from "react-router-dom";
-import Detail from "../detail/Detail";
 
 export default function List() {
 
@@ -14,7 +12,7 @@ export default function List() {
     const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
 
     // 디버깅용
-    console.log(data)
+    // console.log(data)
 
     // 데이터가 비어 있는지 확인
     if (!data || data.length === 0) {
@@ -58,7 +56,7 @@ export default function List() {
                 ))}
             </Row>
 
-            <Pagination>
+            <Pagination style={{justifyContent: 'center', padding: '3%'}}>
                 {Array.from({ length: totalPages }, (_, index) => ( // Array.from 메서드는 첫번째 인자는 무시하고 두번째 인자만 사용함. 따라서 첫번째에 아무 이름 사용해도 상관x
                     <Pagination.Item key={index + 1} onClick={() => handlePageChange(index + 1)}>{index + 1}</Pagination.Item>
                 ))}
