@@ -14,19 +14,19 @@ const CartPage = () => {
 
     useEffect(()=>{console.log(checklists)})
 
-    const handleCheck = (checked, productId, lprice) => {
+    const handleCheck = (checked, productId, lprice, count) => {
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
             if (itemIndex !== -1) {
                 const updatedChecklists = [...checklists];
                 updatedChecklists[itemIndex].lprice = Number(lprice);
+                updatedChecklists[itemIndex].count = count;
                 setChecklists(updatedChecklists);
             } else {
-                setChecklists([...checklists, { productId, lprice }]);
+                setChecklists([...checklists, { productId, lprice, count }]); // 새 상품에 대한 count 추가
             }
-        }
-        else{
-            setChecklists(checklists.filter((list)=>list.productId!==productId));
+        } else {
+            setChecklists(checklists.filter((list) => list.productId !== productId));
         }
     }
 
@@ -35,7 +35,8 @@ const CartPage = () => {
         if (checked) {
             const allItemsChecked = localcarts.map(item => ({
                 productId: item.productId,
-                lprice: Number(item.lprice)
+                lprice: Number(item.lprice),
+                count: item.count
             }));
             setChecklists(allItemsChecked);
         } else {
@@ -56,7 +57,8 @@ const CartPage = () => {
         if (allcheck) {
             const allItemsChecked = localcarts.map(item => ({
                 productId: item.productId,
-                lprice: Number(item.lprice)
+                lprice: Number(item.lprice),
+                count: item.count
             }));
             setChecklists(allItemsChecked);
         }
