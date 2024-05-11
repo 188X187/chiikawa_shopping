@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import styles from "../../css/cart.module.css";
 import { DataContext } from "../../MainData";
 
-const CartList = ({item, handleCheck, isChecked}) => {
+const CartList = ({item, handleCheck, isChecked, allcheck}) => {
 
     const getCarts = localStorage.getItem("carts")
     const carts = JSON.parse(getCarts);
@@ -35,7 +35,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
 
     return (
         <section className={styles.cart_product_list}>
-        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, item.lprice * count)}}/>
+        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, item.lprice * count)}} checked={isChecked(item.productId)}/>
         <div className={styles.cart_product_wrap}>
             <div className={styles.cart_product_image}>
                 <img src={item.image} alt="product-img" />

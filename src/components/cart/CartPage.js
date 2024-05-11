@@ -8,6 +8,7 @@ import styles from "../../css/cart.module.css";
 
 const CartPage = () => {
 
+    const [allcheck, setAllcheck] = useState(true);
     const { localcarts } = useContext(DataContext);
     const [checklists, setChecklists] = useState([]);
 
@@ -17,12 +18,10 @@ const CartPage = () => {
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
             if (itemIndex !== -1) {
-                // 기존 항목이 있는 경우 수량 업데이트
                 const updatedChecklists = [...checklists];
-                updatedChecklists[itemIndex].lprice = lprice;
+                updatedChecklists[itemIndex].lprice = Number(lprice);
                 setChecklists(updatedChecklists);
             } else {
-                // 새로운 항목 추가
                 setChecklists([...checklists, { productId, lprice }]);
             }
         }
@@ -32,13 +31,37 @@ const CartPage = () => {
     }
 
     const handleAllCheck = (checked) => {
-        if(checked){
-
-        }
-        else{
-
+        setAllcheck(checked);
+        if (checked) {
+            const allItemsChecked = localcarts.map(item => ({
+                productId: item.productId,
+                lprice: Number(item.lprice)
+            }));
+            setChecklists(allItemsChecked);
+        } else {
+            setChecklists([]);
         }
     }
+    
+    useEffect(() => {
+        if (checklists.length === localcarts.length) {
+            setAllcheck(true);
+        } else {
+            setAllcheck(false);
+        }
+    }, [checklists, localcarts]);
+
+
+    useEffect(() => {
+        if (allcheck) {
+            const allItemsChecked = localcarts.map(item => ({
+                productId: item.productId,
+                lprice: Number(item.lprice)
+            }));
+            setChecklists(allItemsChecked);
+        }
+    }, [allcheck, localcarts]);
+
 
     const isChecked = (productId) => {
         return checklists.some((list) => list.productId === productId);
@@ -46,10 +69,10 @@ const CartPage = () => {
 
     return (
         <>
-        <CartHeader handleAllCheck={handleAllCheck}/>
+        <CartHeader allcheck={allcheck} handleAllCheck={handleAllCheck}/>
         {
         localcarts.length > 0 ? 
-            localcarts.map((item)=><CartList key={item.productId} item={item} handleCheck={handleCheck} isChecked={isChecked}/>)
+            localcarts.map((item)=><CartList key={item.productId} item={item} handleCheck={handleCheck} isChecked={isChecked} allcheck={allcheck}/>)
         :
             <div className={styles.not}>
                 <h2>장바구니에 담긴 상품이 없습니다.</h2>
