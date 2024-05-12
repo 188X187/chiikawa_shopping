@@ -8,3 +8,21 @@ a {
   text-decoration: none;
   color: black;
 }
+
+.footer {
+  margin: 0 auto;
+}
+
+.footer ul li {
+  display: inline;
+  padding: 1%;
+}
+
+.footer img {
+  width: 3rem;
+}
+
+.footer p {
+  font-size: .95rem;
+  word-break: keep-all;
+}
