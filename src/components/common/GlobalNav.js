@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchModal from '../search/SearchModal';
 import { DataContext } from '../../MainData';
+import { Badge } from 'react-bootstrap';
 
 function GlobalNav() {
     const {carts} = useContext(DataContext);
@@ -34,7 +35,7 @@ function GlobalNav() {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Nav.Link href="/list">List</Nav.Link>
-                                <Nav.Link href="/cart">Cart {cartCount}</Nav.Link>
+                                <Nav.Link href="/cart">Cart <Badge pill bg='primary'>{cartCount}</Badge></Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control

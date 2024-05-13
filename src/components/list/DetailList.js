@@ -45,7 +45,7 @@ export default function DeatilList() {
                 <Card.Body>
                   <Link to={'/detail'} onClick={() => { setDetail(item) }}>
                     <Card.Title style={{ wordBreak: 'keep-all', height: '5rem', fontSize: '1rem' }}>
-                      {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
+                      {item.title.replace(/[<b></b>]/g, '').length > 40 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 40)}...` : item.title.replace(/[<b></b>]/g, '')}
                     </Card.Title>
                     <Card.Title style={{ padding: '1%' }}>{item.lprice}원</Card.Title>
                     <Button variant="secondary">상세보기</Button>{' '}
@@ -71,7 +71,7 @@ export default function DeatilList() {
                 <Card.Body>
                   <Link to={'/detail'} onClick={() => { setDetail(item) }}>
                     <Card.Title style={{ wordBreak: 'keep-all', height: '5rem', fontSize: '1rem' }}>
-                      {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
+                      {item.title.replace(/[<b></b>]/g, '').length > 40 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 40)}...` : item.title.replace(/[<b></b>]/g, '')}
                     </Card.Title>
                     <Card.Title style={{ padding: '1%' }}>{item.lprice}원</Card.Title>
                     <Button variant="secondary">상세보기</Button>{' '}
