@@ -9,7 +9,7 @@ import styles from "../../css/cart.module.css";
 const CartPage = () => {
 
     const [allcheck, setAllcheck] = useState(true);
-    const { localcarts } = useContext(DataContext);
+    const { carts } = useContext(DataContext);
     const [checklists, setChecklists] = useState([]);
 
     useEffect(()=>{console.log(checklists)})
@@ -33,7 +33,7 @@ const CartPage = () => {
     const handleAllCheck = (checked) => {
         setAllcheck(checked);
         if (checked) {
-            const allItemsChecked = localcarts.map(item => ({
+            const allItemsChecked = carts.map(item => ({
                 productId: item.productId,
                 lprice: Number(item.lprice),
                 count: item.count
@@ -45,24 +45,24 @@ const CartPage = () => {
     }
     
     useEffect(() => {
-        if (checklists.length === localcarts.length) {
+        if (checklists.length === carts.length) {
             setAllcheck(true);
         } else {
             setAllcheck(false);
         }
-    }, [checklists, localcarts]);
+    }, [checklists, carts]);
 
 
     useEffect(() => {
         if (allcheck) {
-            const allItemsChecked = localcarts.map(item => ({
+            const allItemsChecked = carts.map(item => ({
                 productId: item.productId,
                 lprice: Number(item.lprice),
                 count: item.count
             }));
             setChecklists(allItemsChecked);
         }
-    }, [allcheck, localcarts]);
+    }, [allcheck, carts]);
 
 
     const isChecked = (productId) => {
@@ -73,8 +73,8 @@ const CartPage = () => {
         <>
         <CartHeader allcheck={allcheck} handleAllCheck={handleAllCheck}/>
         {
-        localcarts.length > 0 ? 
-            localcarts.map((item)=><CartList key={item.productId} item={item} handleCheck={handleCheck} isChecked={isChecked} allcheck={allcheck}/>)
+        carts.length > 0 ? 
+            carts.map((item)=><CartList key={item.productId} item={item} handleCheck={handleCheck} isChecked={isChecked} allcheck={allcheck}/>)
         :
             <div className={styles.not}>
                 <h2>장바구니에 담긴 상품이 없습니다.</h2>
@@ -82,7 +82,7 @@ const CartPage = () => {
             </div>
         }
         {
-        localcarts.length > 0 ? 
+        carts.length > 0 ? 
             <CartResult checklists={checklists}/>
         :
             ""

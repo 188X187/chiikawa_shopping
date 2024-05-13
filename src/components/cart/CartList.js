@@ -28,7 +28,8 @@ const CartList = ({item, handleCheck, isChecked, allcheck}) => {
 
     const handleRemoveClick = () => {
         
-        const update = carts.filter(cart => cart.productId !== item.productId);
+        const copys = [...carts];
+        const update = copys.filter(cart => cart.productId !== item.productId);
         setCarts(update);
         handleCheck(false, item.productId);
     }

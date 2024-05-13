@@ -7,7 +7,7 @@ const initData = [
       "https://pbs.twimg.com/media/FZuGhtZaMAEMLdh?format=jpg&name=360x360",
     productId: 0,
     title: "치이카와",
-    lprice: 100000,
+    lprice: 1000000000,
   },
 ];
 
@@ -16,22 +16,17 @@ export const DataContext = createContext();
 const MainData = ({ children }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
-  // const [url, setUrl] = useState('')
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState([])
-  const [data, setData] = useState(''); // 원래 더미데이터로 initData 있었음
+  const [data, setData] = useState('');
   const [detail, setDetail] = useState('');
+  const [params, setParams] = useState('')
   const [carts, setCarts] = useState(() => {
     // 초기 로드 시 localStorage에서 데이터 가져오기
     const savedCarts = localStorage.getItem("carts");
     return savedCarts ? JSON.parse(savedCarts) : [];
   });
-  const [localcarts, setLocalcarts] = useState(() => {
-    // 초기 로드 시 localStorage에서 데이터 가져오기
-    const savedCarts = localStorage.getItem("carts");
-    return savedCarts ? JSON.parse(savedCarts) : [];
-  });
-  const [params, setParams] = useState('')
+
 
   useEffect(() => {
     fetch(
@@ -52,19 +47,17 @@ const MainData = ({ children }) => {
   }, [search, detail, params]);
 
 
-
   useEffect(() => {
     if (carts.length > 0) {
       localStorage.setItem('carts', JSON.stringify(carts));
     } else {
       localStorage.removeItem('carts');
     }
-    setLocalcarts(carts);
   }, [carts]);
 
 
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, carts, params, localcarts, setLocalcarts, setSearch, setFilter, setData, setDetail, setCarts, setParams }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams }}>
       {children}
     </DataContext.Provider>
   );
