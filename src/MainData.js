@@ -18,7 +18,7 @@ const MainData = ({ children }) => {
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState([])
-  const [data, setData] = useState('');
+  const [data, setData] = useState(initData);
   const [detail, setDetail] = useState('');
   const [params, setParams] = useState('')
   const [carts, setCarts] = useState(() => {
@@ -30,7 +30,7 @@ const MainData = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=42&start=1${params}`,
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=10&start=1${params}`,
       {
         method: "GET",
         headers: {
@@ -42,7 +42,7 @@ const MainData = ({ children }) => {
       .then((res) => res.json())
       .then((json) => {
         setData(json.items); // list에서 필요한 데이터
-        setFilter(json.items); // filter에서 필요한 데이터
+        setFilter(json.items); // filter에서 필요한 데이터 (원본유지필요)
       });
   }, [search, detail, params]);
 

@@ -4,11 +4,11 @@ import FilterPrice from './FilterPrice';
 import './Filter.css'
 
 export default function Filter() {
-    // const [params, setParams] = useState('')
-    const { filter, data, setData, setParams } = useContext(DataContext);
+    const { filter, setFilter, data, setData, setParams } = useContext(DataContext);
 
-    const filterCategory = filter.map((item) => (
-        item.category3
+    const filterCategory = []
+    filter.map((item) => (
+        filterCategory.push(item.category3)
     ))
 
     return (
@@ -18,6 +18,10 @@ export default function Filter() {
                     <h4>카테고리</h4>
                     <div>
                         <dl>
+                            <li>
+                                    <label><input type='radio' name="categoty" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
+                            </li>
+
                             {filterCategory.map((item, i) => {
                                 // 현재 요소가 이전 요소들 중에 있는지 확인
                                 const isDuplicate = filterCategory.slice(0, i).includes(item);
@@ -26,19 +30,17 @@ export default function Filter() {
                                 if (isDuplicate == false) {
                                     return (
                                         <li>
-
-                                            <label key={i}>
-                                                <input type='checkbox'
-                                                    onChange={(e) => {
-                                                        if (e.target.checked) {
-                                                            // data.filter((a) => a.filterCategorygory3 == a)
-                                                            setData(data.filter((data) => data.category3 == item))
-                                                        } else {
-                                                            setData(filter)
-                                                        }
-                                                    }} />
-                                                {item}
-                                            </label>
+                                                <label key={i}>
+                                                    <input type='radio' name="categoty"
+                                                        onChange={(e) => {
+                                                            if (e.target.checked) {
+                                                                setData(data.filter((data) => data.category3 == item))
+                                                            } else {
+                                                                setData(filter)
+                                                            }
+                                                        }} />
+                                                    {item}
+                                                </label>
                                         </li>
                                     );
                                 }
@@ -52,9 +54,9 @@ export default function Filter() {
                     <h4>가격</h4>
 
                     <dl>
-                        <li>
-                            <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
-                        </li>
+                            <li>
+                                <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
+                            </li>
 
                         <FilterPrice title={"~1만원"} startPrice={"0"} endPrice={"10000"} />
                         <FilterPrice title={"1~2만원"} startPrice={"10000"} endPrice={"20000"} />
@@ -64,30 +66,31 @@ export default function Filter() {
                         <FilterPrice title={"5만원~"} startPrice={"50000"} endPrice={"1000000000"} />
 
                         <li>
-                            <label><input type="radio" name="price"
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setParams("&sort=asc")
-                                    } else {
-                                        setParams('')
-                                    }
-                                }} />오름차순 정렬</label>
+                                <label><input type="radio" name="price"
+                                    onChange={(e) => {
+                                        if (e.target.checked) {
+                                            setParams("&sort=asc")
+                                        } else {
+                                            setParams('')
+                                        }
+                                    }} />오름차순 정렬</label>
                         </li>
 
                         <li>
-                            <label><input type="radio" name="price"
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        setParams("&sort=dsc")
-                                    } else {
-                                        setParams('')
-                                    }
-                                }} />내림차순 정렬</label>
+                                <label><input type="radio" name="price"
+                                    onChange={(e) => {
+                                        if (e.target.checked) {
+                                            setParams("&sort=dsc")
+                                        } else {
+                                            setParams('')
+                                        }
+                                    }} />내림차순 정렬</label>
                         </li>
                     </dl>
                 </div>
             </div>
-            <div className='filterDummy'></div>
+            <div className='filterDummy'>
+            </div>
         </>
     )
 }
