@@ -7,6 +7,7 @@ import List from "../list/List";
 import CartPage from "../cart/CartPage";
 import Detail from "../detail/Detail";
 import ListPage from "../list/ListPage";
+import Footer from "../home/Footer";
 
 function Layout(){    
     return(
@@ -18,6 +19,7 @@ function Layout(){
             <Route path="detail" element={<Detail />}></Route>
             <Route path="cart" element={<CartPage/>}></Route>
         </Routes>
+        <Footer />
         </>
     )
 }

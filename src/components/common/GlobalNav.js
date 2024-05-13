@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -7,8 +7,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchModal from '../search/SearchModal';
+import { DataContext } from '../../MainData';
 
 function GlobalNav() {
+    const {carts} = useContext(DataContext);
+    const cartCount = carts.length;
+
     const expand = 'md'
     const [modal, setModal] = useState(false)
     return (
@@ -30,7 +34,7 @@ function GlobalNav() {
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
                                 <Nav.Link href="/list">List</Nav.Link>
-                                <Nav.Link href="/cart">Cart</Nav.Link>
+                                <Nav.Link href="/cart">Cart {cartCount}</Nav.Link>
                             </Nav>
                             <Form className="d-flex">
                                 <Form.Control

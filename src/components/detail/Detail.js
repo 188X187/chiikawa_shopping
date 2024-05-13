@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import { DataContext } from "../../MainData";
 import { Link } from "react-router-dom";
+import DetailList from "../list/DetailList";
 
 export default function Detail() {
     const { detail } = useContext(DataContext);
@@ -21,6 +22,7 @@ export default function Detail() {
     }, [detail])
 
     return (
+        <>
         <Card style={{ width: '45rem', height: '40rem', margin: 'auto' }}>
             <Card.Title className='p-3 border-bottom border-2 fw-bold'style={{ wordBreak: 'keep-all' }}>{infoData && infoData.title.replace(/[<b></b>]/g, '')}</Card.Title>
             <Card.Body>
@@ -35,5 +37,8 @@ export default function Detail() {
             </Card.Body>
             
         </Card>
+
+        <DetailList />
+        </>
     );
 }
