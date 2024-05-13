@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import styles from "../../css/cart.module.css";
 import { DataContext } from "../../MainData";
 
-const CartList = ({item, handleCheck, isChecked}) => {
+const CartList = ({item, handleCheck, isChecked, allcheck}) => {
 
     const getCarts = localStorage.getItem("carts")
     const carts = JSON.parse(getCarts);
@@ -12,7 +12,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
     const handlePlusClick = () => {
         setCount(count + 1);
         if(isChecked(item.productId)){
-            handleCheck(true, item.productId, item.lprice * (count+1));
+            handleCheck(true, item.productId, item.lprice * (count+1), count+1);
         }
     }
 
@@ -22,20 +22,21 @@ const CartList = ({item, handleCheck, isChecked}) => {
         }
         setCount(count - 1);
         if(isChecked(item.productId)){
-            handleCheck(true, item.productId, item.lprice * (count-1));
+            handleCheck(true, item.productId, item.lprice * (count-1), count-1);
         }
     }
 
     const handleRemoveClick = () => {
         
-        const update = carts.filter(cart => cart.productId !== item.productId);
+        const copys = [...carts];
+        const update = copys.filter(cart => cart.productId !== item.productId);
         setCarts(update);
         handleCheck(false, item.productId);
     }
 
     return (
         <section className={styles.cart_product_list}>
-        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, item.lprice * count)}}/>
+        <input type="checkbox" onChange={(e)=>{handleCheck(e.currentTarget.checked, item.productId, item.lprice * count, count)}} checked={isChecked(item.productId)}/>
         <div className={styles.cart_product_wrap}>
             <div className={styles.cart_product_image}>
                 <img src={item.image} alt="product-img" />

@@ -27,6 +27,7 @@ const OrderButton = ({item}) =>{
                 productId: item.productId,
                 productType: item.productType,
                 title: item.title,
+                count: 1,
                 }]);
             alert("장바구니에 추가되었습니다");
         }
