@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function List() {
 
     const { data, setDetail } = useContext(DataContext);
-    
+
     const itemsPerPage = 12;    // 한 페이지당 보여줄 아이템 개수
     const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
 
@@ -35,16 +35,16 @@ export default function List() {
                 {currentItems.map((item, index) => (
                     <Col key={index}>
                         <Card style={{ width: '18rem', height: '30rem' }}>
-                            <Link to={'/detail'} onClick={() => {setDetail(item)}}>
-                            <Card.Img variant="top" src={item.image} style={{ height: '15rem' }} />
+                            <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                                <Card.Img variant="top" src={item.image} style={{ height: '15rem' }} />
                             </Link>
 
                             <Card.Body>
-                                <Link to={'/detail'} onClick={() => {setDetail(item)}}>
-                                <Card.Title style={{ wordBreak: 'keep-all', height: '7rem' }}>
-                                    {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
-                                </Card.Title>
-                                <Card.Title style={{ padding: '3%' }}>{item.lprice}원</Card.Title>
+                                <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                                    <Card.Title style={{ wordBreak: 'keep-all', height: '7rem' }}>
+                                        {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
+                                    </Card.Title>
+                                    <Card.Title style={{ padding: '3%' }}>{item.lprice}원</Card.Title>
                                     <Button variant="secondary">상세보기</Button>{' '}
                                 </Link>
 
@@ -56,7 +56,7 @@ export default function List() {
                 ))}
             </Row>
 
-            <Pagination style={{justifyContent: 'center', padding: '3%'}}>
+            <Pagination style={{ justifyContent: 'center', padding: '2%' }}>
                 {Array.from({ length: totalPages }, (_, index) => ( // Array.from 메서드는 첫번째 인자는 무시하고 두번째 인자만 사용함. 따라서 첫번째에 아무 이름 사용해도 상관x
                     <Pagination.Item key={index + 1} onClick={() => handlePageChange(index + 1)}>{index + 1}</Pagination.Item>
                 ))}
