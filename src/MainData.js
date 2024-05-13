@@ -32,7 +32,7 @@ const MainData = ({ children }) => {
 
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=10&start=1${params}`,
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=40&start=1${params}`,
       {
         method: "GET",
         headers: {
