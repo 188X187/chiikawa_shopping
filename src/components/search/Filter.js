@@ -11,6 +11,8 @@ export default function Filter() {
         filterCategory.push(item.category3)
     ))
 
+    const [filterSet, setFilterSet] = useState(filter)
+
     return (
         <>
             <div className='filterContainer'>
@@ -19,7 +21,7 @@ export default function Filter() {
                     <div>
                         <dl>
                             <li>
-                                    <label><input type='radio' name="categoty" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
+                                <label><input type='radio' name="categoty" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />　전체</label>
                             </li>
 
                             {filterCategory.map((item, i) => {
@@ -30,17 +32,17 @@ export default function Filter() {
                                 if (isDuplicate == false) {
                                     return (
                                         <li>
-                                                <label key={i}>
-                                                    <input type='radio' name="categoty"
-                                                        onChange={(e) => {
-                                                            if (e.target.checked) {
-                                                                setData(data.filter((data) => data.category3 == item))
-                                                            } else {
-                                                                setData(filter)
-                                                            }
-                                                        }} />
-                                                    {item}
-                                                </label>
+                                            <label key={i}>
+                                                <input type='radio' name="categoty"
+                                                    onChange={(e) => {
+                                                        if (e.target.checked) {
+                                                            setData(data.filter((data) => data.category3 == item))
+                                                        } else {
+                                                            setData(filterSet)
+                                                        }
+                                                    }} />
+                                                {item}
+                                            </label>
                                         </li>
                                     );
                                 }
@@ -54,9 +56,9 @@ export default function Filter() {
                     <h4>가격</h4>
 
                     <dl>
-                            <li>
-                                <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
-                            </li>
+                        <li>
+                            <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />　전체</label>
+                        </li>
 
                         <FilterPrice title={"~1만원"} startPrice={"0"} endPrice={"10000"} />
                         <FilterPrice title={"1~2만원"} startPrice={"10000"} endPrice={"20000"} />
@@ -66,25 +68,25 @@ export default function Filter() {
                         <FilterPrice title={"5만원~"} startPrice={"50000"} endPrice={"1000000000"} />
 
                         <li>
-                                <label><input type="radio" name="price"
-                                    onChange={(e) => {
-                                        if (e.target.checked) {
-                                            setParams("&sort=asc")
-                                        } else {
-                                            setParams('')
-                                        }
-                                    }} />오름차순 정렬</label>
+                            <label><input type="radio" name="price"
+                                onChange={(e) => {
+                                    if (e.target.checked) {
+                                        setParams("&sort=asc")
+                                    } else {
+                                        setParams('')
+                                    }
+                                }} />　오름차순 정렬</label>
                         </li>
 
                         <li>
-                                <label><input type="radio" name="price"
-                                    onChange={(e) => {
-                                        if (e.target.checked) {
-                                            setParams("&sort=dsc")
-                                        } else {
-                                            setParams('')
-                                        }
-                                    }} />내림차순 정렬</label>
+                            <label><input type="radio" name="price"
+                                onChange={(e) => {
+                                    if (e.target.checked) {
+                                        setParams("&sort=dsc")
+                                    } else {
+                                        setParams('')
+                                    }
+                                }} />　내림차순 정렬</label>
                         </li>
                     </dl>
                 </div>

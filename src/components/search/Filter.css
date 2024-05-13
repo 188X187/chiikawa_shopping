@@ -3,7 +3,6 @@
     box-sizing: border-box;
     background-color:  white;
     width: 150px;
-    /* height: 800px; */
     position: fixed;
     z-index: 1000;
     list-style: none;
@@ -13,7 +12,9 @@
     border-bottom: 1px solid rgb(43, 43, 43, .3);
     padding: 20px 10px;
 }
-
+.filter li {
+    text-align: left;
+}
 .filterDummy {
     width: 150px;
 }

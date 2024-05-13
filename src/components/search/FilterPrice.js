@@ -21,7 +21,7 @@ export default function FilterPrice(props) {
                             }
                         }
                         } />
-                    {props.title}
+                    　{props.title}
                 </label>
         </li>
     )
