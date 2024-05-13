@@ -1,29 +1,44 @@
-import { useContext, useState } from 'react';
-import { DataContext } from '../../MainData';
+import { useContext, useState } from "react";
+import { DataContext } from "../../MainData";
 
 export default function FilterPrice(props) {
+const { data, setFilter } = useContext(DataContext);
 
-    const { data, setData, category, setcategory, origin } = useContext(DataContext);
-
-    return (
-        <li>
-            <label>
-                <input
-                    type='radio' name="price"
-                    onChange={(e) => {
-                        if (e.target.checked && props.startPrice && props.endPrice) {
-                            const price = category.filter((item) =>
-                                parseInt(props.startPrice, 10) <= parseInt(item.lprice, 10) &&
-                                parseInt(item.lprice, 10) < parseInt(props.endPrice, 10) 
-                                )
-                            setData(price)
-                        } else {
-                            setData(category)
-                        }
-                    }
-                    } />
-                {props.title}
-            </label>
-        </li>
-    )
+return (
+    <li>
+    <label>
+        <input
+        type="radio"
+        name="price"
+        onChange={(e) => {
+            if (props.categoryCheck === "") {
+            props.setPriceCheck(props.title);
+            const dataCopy = [...data];
+            const update = dataCopy.filter((item) => {
+                return (
+                parseInt(props.startPrice) <= parseInt(item.lprice) &&
+                parseInt(item.lprice) < parseInt(props.endPrice)
+                );
+            });
+            setFilter(update);
+            } else {
+            props.setPriceCheck(props.title);
+            const dataCopy = [...data];
+            const update = dataCopy.filter((item) => {
+                return (
+                parseInt(props.startPrice) <= parseInt(item.lprice) &&
+                parseInt(item.lprice) < parseInt(props.endPrice)
+                );
+            });
+            const update2 = update.filter((item) => {
+                return item.category3 == props.categoryCheck;
+            });
+            setFilter(update2);
+            }
+        }}
+        />
+        {props.title}
+    </label>
+    </li>
+);
 }
