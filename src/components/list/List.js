@@ -3,6 +3,7 @@ import { DataContext } from "../../MainData";
 import { Button, Card, Col, Pagination, Row } from "react-bootstrap";
 import OrderButton from "../cart/OrderButton";
 import { Link } from "react-router-dom";
+import FilterV2 from "../search/Filter2";
 
 export default function List() {
 
@@ -31,23 +32,23 @@ export default function List() {
 
     return (
         <>
+            {/* <FilterV2 /> */}
             <Row xs={1} md={3} className="g-4">
                 {currentItems.map((item, index) => (
-                    <Col key={index}>
-                        <Card style={{ width: '18rem', height: '30rem' }}>
+                    <Col key={index} className="d-flex justify-content-center align-items-center">
+                        <Card style={{ width: '18rem', height: '32rem' }}>
                             <Link to={'/detail'} onClick={() => { setDetail(item) }}>
-                                <Card.Img variant="top" src={item.image} style={{ height: '15rem' }} />
+                                <Card.Img variant="top" src={item.image} className="img-fluid" />
                             </Link>
 
                             <Card.Body>
                                 <Link to={'/detail'} onClick={() => { setDetail(item) }}>
-                                    <Card.Title style={{ wordBreak: 'keep-all', height: '7rem' }}>
+                                    <Card.Title style={{ wordBreak: 'keep-all', height: '6rem' }}>
                                         {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
                                     </Card.Title>
                                     <Card.Title style={{ padding: '3%' }}>{item.lprice}원</Card.Title>
-                                    <Button variant="secondary">상세보기</Button>{' '}
                                 </Link>
-
+                                <Button variant="secondary">구매하기</Button>{' '}
                                 <Button variant="success"><OrderButton item={item} /></Button>
 
                             </Card.Body>

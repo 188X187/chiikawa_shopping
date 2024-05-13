@@ -1,3 +1,4 @@
+import DeatilList from "../list/DetailList"
 import ImageSlide from "./ImageSlide"
 
 function Home() {
@@ -7,6 +8,8 @@ function Home() {
             <p>
                 HOME page
             </p>
+
+            <DeatilList />
         </div>
     )
 }
