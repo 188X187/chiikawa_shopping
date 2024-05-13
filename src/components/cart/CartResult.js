@@ -6,7 +6,7 @@ const CartResult = ({checklists}) => {
     const [cash, setCash] = useState(0);
 
     useEffect(()=>{
-        const total = checklists.reduce((acc, list)=>acc+list.lprice, 0);
+        const total = checklists.reduce((acc, list)=>acc+(list.lprice*list.count), 0);
         setCash(total);
     }, [checklists])
 

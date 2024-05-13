@@ -9,21 +9,27 @@ import styles from "../../css/cart.module.css";
 const CartPage = () => {
 
     const [allcheck, setAllcheck] = useState(true);
-    const { carts } = useContext(DataContext);
+    const { carts, setCarts } = useContext(DataContext);
     const [checklists, setChecklists] = useState([]);
 
     useEffect(()=>{console.log(checklists)})
 
+
     const handleCheck = (checked, productId, lprice, count) => {
+        
+        const cartsCopy = [...carts];
+        const checksCopy = [...checklists];
+
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
             if (itemIndex !== -1) {
-                const updatedChecklists = [...checklists];
-                updatedChecklists[itemIndex].lprice = Number(lprice);
-                updatedChecklists[itemIndex].count = count;
-                setChecklists(updatedChecklists);
+                checksCopy[itemIndex].count = count;
+                cartsCopy[itemIndex].count = count;
+                setChecklists(checksCopy);
+                setCarts(cartsCopy);
             } else {
-                setChecklists([...checklists, { productId, lprice, count }]); // 새 상품에 대한 count 추가
+                // 새 상품에 대한 count 추가
+                setChecklists([...checklists, { productId: productId, lprice: lprice, count: count }]);
             }
         } else {
             setChecklists(checklists.filter((list) => list.productId !== productId));
