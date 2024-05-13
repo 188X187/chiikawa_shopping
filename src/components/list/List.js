@@ -31,13 +31,12 @@ export default function List() {
 
     return (
         <>
-            {/* <FilterV2 /> */}
             <Row xs={1} md={3} className="g-4">
                 {currentItems.map((item, index) => (
                     <Col key={index} className="d-flex justify-content-center align-items-center">
                         <Card style={{ width: '18rem', height: '32rem' }}>
                             <Link to={'/detail'} onClick={() => { setDetail(item) }}>
-                                <Card.Img variant="top" src={item.image} className="img-fluid" />
+                                <Card.Img variant="top" src={item.image} className="img-fluid" style={{ height: '18rem' }} />
                             </Link>
 
                             <Card.Body>
@@ -45,7 +44,7 @@ export default function List() {
                                     <Card.Title style={{ wordBreak: 'keep-all', height: '6rem' }}>
                                         {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
                                     </Card.Title>
-                                    <Card.Title style={{ padding: '3%' }}>{item.lprice}원</Card.Title>
+                                    <Card.Title style={{ padding: '3%' }}>{Number(item.lprice).toLocaleString()}원</Card.Title>
                                 </Link>
                                 <Button variant="secondary">구매하기</Button>{' '}
                                 <Button variant="success"><OrderButton item={item} /></Button>

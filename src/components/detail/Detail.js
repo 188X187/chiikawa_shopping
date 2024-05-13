@@ -32,7 +32,7 @@ export default function Detail() {
                 {deliveryDate ? `${deliveryDate}일 선택 📆` : '배송일 지정 📆'}
             </Button>
 
-            <Calendar 
+            <Calendar
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 onDateSelect={(date) => setDeliveryDate(date)}
@@ -46,7 +46,7 @@ export default function Detail() {
                 <Card.Body>
                     <Card.Img style={{ width: '25rem' }} className='Infocardimg' variant="top" src={infoData && infoData.image} />
                     <Card.Title className='fw-bold text-danger' style={{ padding: '2%' }}>
-                        {infoData && infoData.lprice}원
+                        {infoData && Number(infoData.lprice).toLocaleString()}원
                     </Card.Title>
                     <div className='d-flex justify-content-between'>
                         <button className='w-50 border-0 p-3 mb-2 bg-success text-white'>구매</button>

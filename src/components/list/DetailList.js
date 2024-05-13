@@ -48,7 +48,7 @@ export default function DeatilList() {
                         <Card.Title style={{ wordBreak: 'keep-all', height: '5rem', fontSize: '1rem' }}>
                           {item.title.replace(/[<b></b>]/g, '').length > 40 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 40)}...` : item.title.replace(/[<b></b>]/g, '')}
                         </Card.Title>
-                        <Card.Title style={{ padding: '1%' }}>{item.lprice}원</Card.Title>
+                        <Card.Title style={{ padding: '1%' }}>{Number(item.lprice).toLocaleString()}원</Card.Title>
                         <Button variant="secondary">상세보기</Button>{' '}
                       </Link>
 
