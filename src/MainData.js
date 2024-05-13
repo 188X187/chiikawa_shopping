@@ -21,6 +21,8 @@ const MainData = ({ children }) => {
   const [data, setData] = useState(initData);
   const [detail, setDetail] = useState('');
   const [params, setParams] = useState('')
+  const [origin, setOrigin] = useState([]);
+  const [category, setcategory] = useState([]);
   const [carts, setCarts] = useState(() => {
     // 초기 로드 시 localStorage에서 데이터 가져오기
     const savedCarts = localStorage.getItem("carts");
@@ -43,6 +45,7 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items); // list에서 필요한 데이터
         setFilter(json.items); // filter에서 필요한 데이터 (원본유지필요)
+        setOrigin(json.items) // 원본 data 유지 필요
       });
   }, [search, detail, params]);
 
@@ -57,7 +60,7 @@ const MainData = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, origin, setOrigin, category, setcategory }}>
       {children}
     </DataContext.Provider>
   );

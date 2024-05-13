@@ -4,14 +4,15 @@ import FilterPrice from './FilterPrice';
 import './Filter.css'
 
 export default function Filter() {
-    const { filter, setFilter, data, setData, setParams } = useContext(DataContext);
+    const { filter, setFilter, data, setData, setParams, origin, setOrigin, category, setcategory } = useContext(DataContext);
 
     const filterCategory = []
     filter.map((item) => (
         filterCategory.push(item.category3)
     ))
 
-    const [filterSet, setFilterSet] = useState(filter)
+    // 디버깅용
+    // console.log(category);
 
     return (
         <>
@@ -21,7 +22,7 @@ export default function Filter() {
                     <div>
                         <dl>
                             <li>
-                                <label><input type='radio' name="categoty" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />　전체</label>
+                                <label><input type='radio' name="category" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
                             </li>
 
                             {filterCategory.map((item, i) => {
@@ -33,12 +34,14 @@ export default function Filter() {
                                     return (
                                         <li>
                                             <label key={i}>
-                                                <input type='radio' name="categoty"
+                                                <input type='radio' name="category"
                                                     onChange={(e) => {
                                                         if (e.target.checked) {
-                                                            setData(data.filter((data) => data.category3 == item))
+                                                            setData(origin.filter((data) => data.category3 == item))
+                                                            setcategory(data)
                                                         } else {
-                                                            setData(filterSet)
+                                                            setData(origin)
+                                                            setcategory(data)
                                                         }
                                                     }} />
                                                 {item}
@@ -57,7 +60,7 @@ export default function Filter() {
 
                     <dl>
                         <li>
-                            <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />　전체</label>
+                            <label><input type='radio' name="price" onChange={(e) => { if (e.target.checked) { setParams(''); setData(filter) } }} />전체</label>
                         </li>
 
                         <FilterPrice title={"~1만원"} startPrice={"0"} endPrice={"10000"} />
@@ -75,7 +78,7 @@ export default function Filter() {
                                     } else {
                                         setParams('')
                                     }
-                                }} />　오름차순 정렬</label>
+                                }} />오름차순 정렬</label>
                         </li>
 
                         <li>
@@ -86,7 +89,7 @@ export default function Filter() {
                                     } else {
                                         setParams('')
                                     }
-                                }} />　내림차순 정렬</label>
+                                }} />내림차순 정렬</label>
                         </li>
                     </dl>
                 </div>
