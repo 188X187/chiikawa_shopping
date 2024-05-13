@@ -15,13 +15,18 @@ const CartPage = () => {
     useEffect(()=>{console.log(checklists)})
 
 
+
+    // CartList의 상품이 체크했을때 작동하는 함수
     const handleCheck = (checked, productId, lprice, count) => {
         
         const cartsCopy = [...carts];
         const checksCopy = [...checklists];
 
+        // 체크가 됬을경우 기존에 있으면 덮어씌어야 되기때문에 index를 찾는다
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
+
+            // 못찾으면 -1을 반환하는데 !==이므로 값을 찾은 경우임
             if (itemIndex !== -1) {
                 checksCopy[itemIndex].count = count;
                 cartsCopy[itemIndex].count = count;
