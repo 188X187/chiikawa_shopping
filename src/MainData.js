@@ -27,10 +27,9 @@ const MainData = ({ children }) => {
     return savedCarts ? JSON.parse(savedCarts) : [];
   });
 
-
   useEffect(() => {
     fetch(
-      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=10&start=1${params}`,
+      `/v1/search/shop?query=치이카와&filter=used:false&display=100&start=1`,
       {
         method: "GET",
         headers: {
@@ -44,8 +43,26 @@ const MainData = ({ children }) => {
         setData(json.items); // list에서 필요한 데이터
         setFilter(json.items); // filter에서 필요한 데이터 (원본유지필요)
       });
+  }, []);
+
+  useEffect(() => {
+    fetch(
+      `/v1/search/shop?query=치이카와${search}&filter=used:false&display=100&start=1${params}`,
+      {
+        method: "GET",
+        headers: {
+          "X-Naver-Client-Id": clientId,
+          "X-Naver-Client-Secret": clientSecret,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setFilter(json.items);
+      });
   }, [search, detail, params]);
 
+  
 
   useEffect(() => {
     if (carts.length > 0) {
