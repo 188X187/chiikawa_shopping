@@ -17,7 +17,7 @@ export default function FilterV2() {
 
     const filterCategory = [];
     const dataCopy1 = [...data];
-    dataCopy1.map((item) => filterCategory.push(item.category3));
+    dataCopy1.map((item) => filterCategory.push(item.category3)); // 필터카테고리에 배열을 추가하기 위해서 dataCopy1이 있어야 함
 
     // 가격 정렬 시 필요한 배열
     const priceTitle = ["0~10000", "10000~20000", "20000~30000", "30000~40000", "40000~50000", "50000~1000000000"]
@@ -64,7 +64,8 @@ export default function FilterV2() {
                         <ButtonGroup>
                             <li>
                                 {filterCategory.map((item, i) => {
-                                    const isDuplicate = filterCategory.slice(0, i).includes(item);
+                                    const isDuplicate = filterCategory.slice(0, i).includes(item); // 카테고리 중복 테스트
+                                    // 카테고리가 중복이 아닐 때
                                     if (isDuplicate == false) {
                                         return (
                                             <ToggleButtonGroup type='radio' name='category' key={i}>
