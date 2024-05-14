@@ -21,29 +21,18 @@ export default function FilterV2() {
 
     // 카테고리 온클릭 이벤트 함수
     const handleCateClick = (value) => {
-        if (selectedCateBtn !== value) {
             setSelectedCateBtn(value)
-        } else {
-            setSelectedCateBtn(value)
-        }
+
     }
 
     // 가격 정렬 시 필요한 배열
-    const priceTitle = ["0원~10,000원", "10,000원~20,000원", "20,000원~30,000원", "30,000원~40,000원", "40,000원~50,000원", "50,000원~1,000,000,000원"]
+    const priceTitle = ["~10,000원", "10,000원~20,000원", "20,000원~30,000원", "30,000원~40,000원", "40,000원~50,000원", "50,000원~"]
     const startPrice = ["0", "10000", "20000", "30000", "40000", "50000"];
     const endPrice = ["10000", "20000", "30000", "40000", "50000", "1000000000"];
 
     // 가격 온클릭 이벤트 함수
     const handlePriceClick = (value) => {
-        // 클릭된 버튼이 현재 선택된 값이 아니라면 선택한 값을 변경합니다.
-        if (selectePriceBtn !== value) {
             setSelectedPriceBtn(value);
-
-        } else {
-            // 이미 선택된 버튼을 다시 클릭했을 때는 선택을 해제합니다.
-            setSelectedPriceBtn(null);
-
-        }
     };
 
     return (
