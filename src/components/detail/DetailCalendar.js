@@ -13,12 +13,14 @@ function Calendar(props) {
     ];
     const daysOfWeek = ['월', '화', '수', '목', '금', '토', '일'];
 
+    // 선택된 날짜를 상태 관리
     const [selectedDate, setSelectedDate] = useState(null);
 
+    // 날짜 클릭 시 실행하는 함수
     const handleDateClick = (date) => {
         setSelectedDate(date);
         console.log("Selected Date:", date);
-        props.setDeliveryDate(date)
+        props.setDeliveryDate(date);
     };
 
     return (
@@ -30,6 +32,7 @@ function Calendar(props) {
             </Modal.Header>
             <Modal.Body className="grid-example">
                 <Container>
+                    {/* 요일 표시 */}
                     <Row>
                         {daysOfWeek.map((day, index) => (
                             <Col key={index} className='border text-center p-2'>
@@ -37,11 +40,14 @@ function Calendar(props) {
                             </Col>
                         ))}
                     </Row>
+                    {/* 달력 표시 */}
                     {dates.map((week, idx) => (
                         <Row key={idx}>
+                            {/* 일수 */}
                             {week.map((date, colIndex) => (
                                 <Col
                                     key={colIndex}
+                                    // 오늘,선택한 날짜에 테두리 스타일
                                     className={`border text-center p-2 ${date === today ? 'border-primary' : ''} ${date === selectedDate ? 'bg-success text-white' : ''}`} 
                                     onClick={() => handleDateClick(date)}
                                     style={{ cursor: 'pointer' }}
@@ -54,6 +60,7 @@ function Calendar(props) {
                 </Container>
             </Modal.Body>
             <Modal.Footer className='w-100 justify-content-center'>
+                {/* 선택된 날짜가 있을 경우 날짜 버튼에 표시 */}
                 <Button className='w-50' onClick={props.onHide}>
                     {selectedDate ? `${selectedDate}일 선택` : '선택'}
                 </Button>
