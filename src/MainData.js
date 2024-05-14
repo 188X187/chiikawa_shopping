@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
+
+// 더미데이터
 const initData = [
   {
     category1: "없음",
@@ -11,23 +13,17 @@ const initData = [
   },
 ];
 
+
+// useContext 훅을 사용하기 위한 준비, index.js에서 사용한다
 export const DataContext = createContext();
+
+
 
 const MainData = ({ children }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
-  const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState([])
+  // data는 변경해서는 안되는 값으로 지정해놓고, 사용할 데이터들을 최초에 한번만 저장시키도록 하였음
   const [data, setData] = useState(initData);
-  const [detail, setDetail] = useState('');
-  const [params, setParams] = useState('')
-  const [origin, setOrigin] = useState([]);
-  const [category, setcategory] = useState([]);
-  const [carts, setCarts] = useState(() => {
-    // 초기 로드 시 localStorage에서 데이터 가져오기
-    const savedCarts = localStorage.getItem("carts");
-    return savedCarts ? JSON.parse(savedCarts) : [];
-  });
 
   useEffect(() => {
     fetch(
@@ -42,11 +38,27 @@ const MainData = ({ children }) => {
     )
       .then((res) => res.json())
       .then((json) => {
-        setData(json.items); // list에서 필요한 데이터
-        setFilter(json.items); // filter에서 필요한 데이터 (원본유지필요)
-        setOrigin(json.items) // 원본 data 유지 필요
+        setData(json.items);
+        setFilter(json.items); // 처음에는 data와 같게 설정해놓고, 이제부터는 data가 원본, filter를 바꾸는 식으로 작업함
       });
   }, []);
+
+
+
+
+  // 공통으로 필요할거같은 state들을 만들어 놓는다
+  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState([])
+  const [detail, setDetail] = useState('');
+  const [params, setParams] = useState('')
+  const [category, setcategory] = useState([]);
+  const [carts, setCarts] = useState(() => {
+    const savedCarts = localStorage.getItem("carts");
+    return savedCarts ? JSON.parse(savedCarts) : [];
+  });
+
+
+
 
   useEffect(() => {
     fetch(
@@ -67,6 +79,8 @@ const MainData = ({ children }) => {
 
   
 
+
+  // 카트는 항상 변경될때마다 localstorage와 같게 갱신시켜준다
   useEffect(() => {
     if (carts.length > 0) {
       localStorage.setItem('carts', JSON.stringify(carts));
@@ -76,8 +90,9 @@ const MainData = ({ children }) => {
   }, [carts]);
 
 
+
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, origin, setOrigin, category, setcategory }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, category, setcategory }}>
       {children}
     </DataContext.Provider>
   );

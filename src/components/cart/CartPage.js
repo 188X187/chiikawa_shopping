@@ -16,13 +16,14 @@ const CartPage = () => {
 
 
 
+
     // CartList의 상품이 체크했을때 작동하는 함수
     const handleCheck = (checked, productId, lprice, count) => {
         
         const cartsCopy = [...carts];
         const checksCopy = [...checklists];
 
-        // 체크가 됬을경우 기존 리스트에 있으면 덮어씌어야 되기때문에 index를 찾는다
+        // 이미 기존 리스트에 있으면 덮어씌어야 되기때문에 index를 찾는다
         if (checked) {
             const itemIndex = checklists.findIndex((list) => list.productId === productId);
 
@@ -45,6 +46,8 @@ const CartPage = () => {
 
 
 
+
+
     // 전체선택 체크했을때의 함수
     const handleAllCheck = (checked) => {
         setAllcheck(checked);
@@ -62,15 +65,26 @@ const CartPage = () => {
         }
     }
     
+
+
+
+
+
+    // 체크리스트 상태가 바뀔때마다 카트 갯수와 비교한다
     useEffect(() => {
         if (checklists.length === carts.length) {
             setAllcheck(true);
         } else {
             setAllcheck(false);
         }
-    }, [checklists, carts]);
+    }, [checklists]);
 
 
+
+
+
+
+    // all체크에 변경이 일어나면 체크리스트를 카트로 갱신시킨다
     useEffect(() => {
         if (allcheck) {
             const allItemsChecked = carts.map(item => ({
@@ -80,13 +94,24 @@ const CartPage = () => {
             }));
             setChecklists(allItemsChecked);
         }
-    }, [allcheck, carts]);
+    }, [allcheck]);
 
 
+
+
+
+
+    // 자식이 부모 체크리스트에 속해있는지 알려준다, true/false를 반환한다
     const isChecked = (productId) => {
         return checklists.some((list) => list.productId === productId);
     }
 
+
+
+
+
+
+    
     return (
         <>
         <CartHeader allcheck={allcheck} handleAllCheck={handleAllCheck}/>

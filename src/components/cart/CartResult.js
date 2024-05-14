@@ -3,6 +3,7 @@ import styles from "../../css/cart.module.css";
 
 const CartResult = ({checklists}) => {
 
+    // cash는 상품의 총합계금이다
     const [cash, setCash] = useState(0);
 
     useEffect(()=>{
@@ -34,8 +35,6 @@ const CartResult = ({checklists}) => {
                 {checklists.length > 0 ? "3000원" : "0"}
             </p>
         </div>
-
-        
 
         <div className={styles.cart_product_price}>
             <p className={styles.total_price}></p>
