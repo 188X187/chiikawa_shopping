@@ -7,7 +7,9 @@ import MainData from "./MainData"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  
+
+
+// 자식요소로 App을 지정하고 모든 곳에서 useContext가 사용
     <MainData>
       <App />
     </MainData>

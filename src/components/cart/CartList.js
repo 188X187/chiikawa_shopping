@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import styles from "../../css/cart.module.css";
 import { DataContext } from "../../MainData";
 
-const CartList = ({ item, handleCheck, isChecked }) => {
-    // const getCarts = localStorage.getItem("carts");
-    // const carts = JSON.parse(getCarts);
+const CartList = ({item, handleCheck, isChecked}) => {
+
     const [count, setCount] = useState(item.count);
     const { carts, setCarts } = useContext(DataContext);
 
+
+
+    
+
+    // 수량이 바뀌면 체크리스트에 있는지 확인시켜서 갱신시킨다
     useEffect(() => {
         if (isChecked(item.productId)) {
             handleCheck(true, item.productId, item.lprice, count);
@@ -15,17 +19,21 @@ const CartList = ({ item, handleCheck, isChecked }) => {
     }, [count]);
 
 
-    const cartsCopy = [...carts];
-    const itemIndex = carts.findIndex((list) => list.productId === item.productId);
 
-
+    
+    
+    // 카운트를 변동하거나 아이템 삭제시 카트에도 갱신해준다
     const handlePlusClick = () => {
+        const cartsCopy = [...carts];
+        const itemIndex = carts.findIndex((list) => list.productId === item.productId);
         setCount(count + 1);
         cartsCopy[itemIndex].count = count + 1;
         setCarts(cartsCopy);
     };
-
+    
     const handleMinusClick = () => {
+        const cartsCopy = [...carts];
+        const itemIndex = carts.findIndex((list) => list.productId === item.productId);
         if (count === 1) {
             return;
         }
@@ -35,11 +43,15 @@ const CartList = ({ item, handleCheck, isChecked }) => {
     };
 
     const handleRemoveClick = () => {
-        const copys = [...carts];
-        const update = copys.filter(cart => cart.productId !== item.productId);
+        const cartsCopy = [...carts];
+        const update = cartsCopy.filter(cart => cart.productId !== item.productId);
         setCarts(update);
         handleCheck(false, item.productId);
     };
+
+
+
+
 
     return (
         <section className={styles.cart_product_list}>

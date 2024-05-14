@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { DataContext } from "../../MainData";
 
+
+// 이 주문버튼 컴포넌트를 사용하고 약속된 개체를 보내준다면 어디서든 장바구니에 추가할수 있다
 const OrderButton = ({item}) =>{
 
     const {carts, setCarts} = useContext(DataContext);
