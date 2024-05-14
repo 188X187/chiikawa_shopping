@@ -19,22 +19,11 @@ export default function FilterV2() {
     const dataCopy1 = [...data];
     dataCopy1.map((item) => filterCategory.push(item.category3));
 
-    // 카테고리 온클릭 이벤트 함수
-    const handleCateClick = (value) => {
-            setSelectedCateBtn(value)
-
-    }
-
     // 가격 정렬 시 필요한 배열
     const priceTitle = ["0~10000", "10000~20000", "20000~30000", "30000~40000", "40000~50000", "50000~1000000000"]
     const priceTitle2 = ["0원~10,000원", "10,000원~20,000원", "20,000원~30,000원", "30,000원~40,000원", "40,000원~50,000원", "50,000원~1,000,000,000원"]
     const startPrice = ["0", "10000", "20000", "30000", "40000", "50000"];
     const endPrice = ["10000", "20000", "30000", "40000", "50000", "1000000000"];
-
-    // 가격 온클릭 이벤트 함수
-    const handlePriceClick = (value) => {
-            setSelectedPriceBtn(value);
-    };
 
     return (
         <Accordion defaultActiveKey={['0']} alwaysOpen>
@@ -48,7 +37,7 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectedCateBtn === "전체" ? "success" : "outline-success"}
                                         onClick={() => {
-                                            handleCateClick("전체")
+                                            setSelectedCateBtn("전체")
                                             if (priceCheck == "") {
                                                 setCategoryCheck("");
                                                 const dataCopy = [...data];
@@ -82,7 +71,7 @@ export default function FilterV2() {
                                                 <ToggleButton
                                                     variant={selectedCateBtn === item ? "success" : "outline-success"}
                                                     onClick={() => {
-                                                        handleCateClick(item)
+                                                        setSelectedCateBtn(item)
                                                         if (priceCheck === "") {
                                                             setCategoryCheck(item);
                                                             const dataCopy = [...data];
@@ -96,7 +85,6 @@ export default function FilterV2() {
                                                             const update = dataCopy.filter(
                                                                 (data) => data.category3 == item
                                                             );
-
                                                             const parts = priceCheck.split("~");
                                                             const update2 = update.filter((item) => {
                                                                 return (
@@ -109,63 +97,14 @@ export default function FilterV2() {
                                                     }}>
                                                     {item}
                                                 </ToggleButton>
-
                                             </ToggleButtonGroup>
                                         )
                                     }
-
                                 }
-
                                 )}
                             </li>
                         </ButtonGroup>
 
-                        {/* {filterCategory.map((item, i) => {
-                            // 현재 요소가 이전 요소들 중에 있는지 확인
-                            const isDuplicate = filterCategory.slice(0, i).includes(item);
-
-                            // 중복된 경우는 출력하지 않음
-                            if (isDuplicate == false) {
-                                return (
-                                    <li>
-                                        <ButtonGroup key={i}>
-                                            <ToggleButton
-                                                type="radio"
-                                                name="categoty"
-                                                onClick={(e) => {
-                                                    if (priceCheck === "") {
-                                                        setCategoryCheck(item);
-                                                        const dataCopy = [...data];
-                                                        const update = dataCopy.filter(
-                                                            (data) => data.category3 == item
-                                                        );
-                                                        setFilter(update);
-                                                    } else {
-                                                        setCategoryCheck(item);
-                                                        const dataCopy = [...data];
-                                                        const update = dataCopy.filter(
-                                                            (data) => data.category3 == item
-                                                        );
-
-                                                        const parts = priceCheck.split("~");
-                                                        const update2 = update.filter((item) => {
-                                                            return (
-                                                                parseInt(parts[0]) <= parseInt(item.lprice) &&
-                                                                parseInt(item.lprice) < parseInt(parts[1])
-                                                            );
-                                                        });
-                                                        setFilter(update2);
-                                                    }
-                                                }}>
-                                                {item}
-                                            </ToggleButton>
-
-                                        </ButtonGroup>{'  '}
-                                    </li>
-                                );
-                            }
-                            return null;
-                        })} */}
                     </div>
                 </Accordion.Body>
             </Accordion.Item>
@@ -179,7 +118,7 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectePriceBtn === "전체" ? "success" : "outline-success"}
                                         onClick={() => {
-                                            handlePriceClick("전체")
+                                            setSelectedPriceBtn("전체")
                                             if (categoryCheck == "") {
                                                 setPriceCheck("");
                                                 const dataCopy = [...data];
@@ -206,7 +145,7 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectePriceBtn === title ? "success" : "outline-success"}
                                         onClick={() => {
-                                            handlePriceClick(title);
+                                            setSelectedPriceBtn(title);
                                             if (categoryCheck === "") {
                                                 setPriceCheck(title);
                                                 const dataCopy = [...data];
@@ -240,56 +179,13 @@ export default function FilterV2() {
                             ))}
                         </ButtonGroup>
 
-                        {/* <FilterPrice
-                            title={"0원~10,000"}
-                            startPrice={"0"}
-                            endPrice={"10000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        />
-                        <FilterPrice
-                            title={"10,000원~20,000"}
-                            startPrice={"10000"}
-                            endPrice={"20000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        />
-                        <FilterPrice
-                            title={"20,000원~30,000"}
-                            startPrice={"20000"}
-                            endPrice={"30000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        />
-                        <FilterPrice
-                            title={"30,000원~40,000"}
-                            startPrice={"30000"}
-                            endPrice={"40000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        />
-                        <FilterPrice
-                            title={"40,000원~50,000"}
-                            startPrice={"40000"}
-                            endPrice={"50000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        />
-                        <FilterPrice
-                            title={"50,000원~1,000,000,000"}
-                            startPrice={"50000"}
-                            endPrice={"1000000000"}
-                            categoryCheck={categoryCheck}
-                            setPriceCheck={setPriceCheck}
-                        /> */}
-
                         <li>
                             <ButtonGroup>
                                 <ToggleButtonGroup type="radio" name="price">
                                     <ToggleButton
                                         variant={selectePriceBtn === "내림차순" ? 'success' : 'outline-success'}
                                         onClick={(e) => {
-                                            handlePriceClick("내림차순")
+                                            setSelectedPriceBtn("내림차순")
                                             if (e) {
                                                 setParams("&sort=dsc");
                                             } else {
@@ -302,7 +198,7 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectePriceBtn === "오름차순" ? 'success' : 'outline-success'}
                                         onClick={(e) => {
-                                            handlePriceClick("오름차순")
+                                            setSelectedPriceBtn("오름차순")
                                             if (e) {
                                                 setParams("&sort=asc");
                                             } else {
