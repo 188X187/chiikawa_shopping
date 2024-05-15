@@ -9,7 +9,7 @@ export default function List() {
     const { filter, setDetail } = useContext(DataContext);
 
     const itemsPerPage = 12;    // 한 페이지당 보여줄 아이템 개수
-    const [currentPage, setCurrentPage] = useState(1);  // 현재 페이지
+    const [page, setPage] = useState(1);  // 현재 페이지
 
     // 디버깅용
     // console.log(filter)
@@ -19,7 +19,7 @@ export default function List() {
         return <div>No filter available</div>;
     }
 
-    const startIndex = (currentPage - 1) * itemsPerPage;    // 시작 인덱스
+    const startIndex = (page - 1) * itemsPerPage;    // 시작 인덱스
     const endIndex = Math.min(startIndex + itemsPerPage, filter.length);      // 마지막 인덱스
     const currentItems = filter.slice(startIndex, endIndex);      // 한 페이지당 보여줄 아이템 데이터에서 값 가져오기
     const totalPages = Math.ceil(filter.length / itemsPerPage);      // 전체 페이지 수 계산
@@ -51,11 +51,12 @@ export default function List() {
                 ))}
             </Row>
 
-            <Pagination style={{ justifyContent: 'center', padding: '2%' }}>
-                {Array.from({ length: totalPages }, (_, index) => ( // Array.from 메서드는 첫번째 인자는 무시하고 두번째 인자만 사용함. 따라서 첫번째에 아무 이름 사용해도 상관x
-                    <Pagination.Item key={index + 1} onClick={() => setCurrentPage(index + 1)}>{index + 1}</Pagination.Item>
+            <Pagination style={{justifyContent: 'center', padding: '3%'}}>
+                {[...Array(totalPages)].map((a, index) => (
+                    <Pagination.Item key={index + 1} active={page === index+1} onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
                 ))}
             </Pagination>
+
         </>
     )
 }
