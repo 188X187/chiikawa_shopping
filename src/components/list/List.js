@@ -24,10 +24,6 @@ export default function List() {
     const currentItems = filter.slice(startIndex, endIndex);      // 한 페이지당 보여줄 아이템 데이터에서 값 가져오기
     const totalPages = Math.ceil(filter.length / itemsPerPage);      // 전체 페이지 수 계산
 
-    // 페이지 버튼 클릭 시 이벤트 함수
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
 
     return (
         <>
@@ -57,7 +53,7 @@ export default function List() {
 
             <Pagination style={{ justifyContent: 'center', padding: '2%' }}>
                 {Array.from({ length: totalPages }, (_, index) => ( // Array.from 메서드는 첫번째 인자는 무시하고 두번째 인자만 사용함. 따라서 첫번째에 아무 이름 사용해도 상관x
-                    <Pagination.Item key={index + 1} onClick={() => handlePageChange(index + 1)}>{index + 1}</Pagination.Item>
+                    <Pagination.Item key={index + 1} onClick={() => setCurrentPage(index + 1)}>{index + 1}</Pagination.Item>
                 ))}
             </Pagination>
         </>

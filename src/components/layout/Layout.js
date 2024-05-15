@@ -11,8 +11,7 @@ import Footer from "../home/Footer";
 
 function Layout() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <div style={{ flex: '1' }}>
+        <>
                 <GlobalNav />
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
@@ -20,9 +19,8 @@ function Layout() {
                     <Route path="detail" element={<Detail />}></Route>
                     <Route path="cart" element={<CartPage />}></Route>
                 </Routes>
-            </div>
                 <Footer />
-        </div>
+        </>
     )
 }
 
