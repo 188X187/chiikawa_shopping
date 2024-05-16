@@ -53,7 +53,7 @@ export default function List() {
 
             <Pagination style={{ justifyContent: 'center', padding: '3%' }}>
                 {[...Array(totalPages)].map((a, index) => (
-                    <Pagination.Item key={index + 1} active={page === index + 1} onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
+                    <Pagination.Item key={index + 1} active={page === index + 1} onClick={() => {setPage(index + 1); window.scrollTo(0, 0);}}>{index + 1}</Pagination.Item>
                 ))}
             </Pagination>
 

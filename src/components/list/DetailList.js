@@ -39,12 +39,12 @@ export default function DeatilList() {
               {random.slice(slideIndex * 3, (slideIndex + 1) * 3).map((item, index) => (
                 <Col key={index} className="d-flex justify-content-center align-items-center">
                   <Card style={{ width: '16rem', height: '28rem' }}>
-                    <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                    <Link to={'/detail'} onClick={() => { setDetail(item); window.scrollTo(0, 0); }}>
                       <Card.Img variant="top" src={item.image} className="img-fluid" style={{height: '15rem'}}/>
                     </Link>
 
                     <Card.Body>
-                      <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                      <Link to={'/detail'} onClick={() => { setDetail(item); window.scrollTo(0, 0);}}>
                         <Card.Title style={{ wordBreak: 'keep-all', height: '5rem', fontSize: '1rem' }}>
                           {item.title.replace(/[<b></b>]/g, '').length > 40 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 40)}...` : item.title.replace(/[<b></b>]/g, '')}
                         </Card.Title>
