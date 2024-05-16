@@ -8,21 +8,21 @@ export default function List() {
 
     const { filter, setDetail } = useContext(DataContext);
 
-    const itemsPerPage = 12;    // 한 페이지당 보여줄 아이템 개수
+    
+    // 페이지네이션
     const [page, setPage] = useState(1);  // 현재 페이지
+    const itemsPerPage = 12;    // 한 페이지당 보여줄 아이템 개수
+    const startIndex = (page - 1) * itemsPerPage;    // 시작 인덱스
+    const endIndex = Math.min(startIndex + itemsPerPage, filter.length);      // 마지막 인덱스
+    const totalPages = Math.ceil(filter.length / itemsPerPage);      // 전체 페이지 수 계산
 
-    // 디버깅용
-    // console.log(filter)
 
+    
     // 데이터가 비어 있는지 확인
     if (!filter || filter.length === 0) {
         return <div>No filter available</div>;
     }
-
-    const startIndex = (page - 1) * itemsPerPage;    // 시작 인덱스
-    const endIndex = Math.min(startIndex + itemsPerPage, filter.length);      // 마지막 인덱스
-    // const currentItems = filter.slice(startIndex, endIndex);      // 한 페이지당 보여줄 아이템 데이터에서 값 가져오기
-    const totalPages = Math.ceil(filter.length / itemsPerPage);      // 전체 페이지 수 계산
+    
 
 
     return (
