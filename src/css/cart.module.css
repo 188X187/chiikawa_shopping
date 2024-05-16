@@ -15,14 +15,13 @@
   margin: 0 auto;
   margin-top: 52px;
   display: grid;
-  grid-template-columns: 2fr 3fr 7fr 4fr 4fr;
+  grid-template-columns: repeat(4, 1fr);
   place-items: center;
 }
 
 .tab_title span {
   background: #f2f2f2;
 }
-
 
 .tab_title input[type="checkbox"] {
   width: 20px;
@@ -31,6 +30,7 @@
   border-radius: 50%;
   appearance: none;
   cursor: pointer;
+  transform: translate(-8px, 5px)
 }
 
 .tab_title input[type="checkbox"]:checked {
@@ -38,11 +38,17 @@
   border: none;
 }
 
+.tab_title span:nth-child(3) {
+  transform: translateX(23px);
+}
+
+
 .tab_title p {
   display: none;
   background: #f2f2f2;
   font-size: 18px;
   color: #767676;
+  transform: translate(-40px, 8px);
 }
 
 /* cartList*/
