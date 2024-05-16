@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { DataContext } from '../../MainData';
 import { Link } from 'react-router-dom';
-import './SearchModal.css';
+import '../../css/SearchModal.css';
 
 export default function SearchModal(props) {
 
