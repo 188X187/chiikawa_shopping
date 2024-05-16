@@ -45,7 +45,7 @@ export default function Detail() {
                 <Card.Body>
                     <Card.Img style={{ width: '25rem' }} className='Infocardimg' variant="top" src={infoData && infoData.image} />
                     <Card.Title className='fw-bold text-danger fs-2' style={{ padding: '2%' }}>
-                        {infoData && infoData.lprice}원
+                        {infoData && Number(infoData.lprice).toLocaleString()}원
                     </Card.Title>
                     {/* 배송 희망일 선택 버튼 */}
                     <Button className="w-100 " onClick={() => setModalShow(true)}>

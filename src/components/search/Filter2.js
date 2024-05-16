@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import { DataContext } from '../../MainData';
 import FilterPrice from "./FilterPrice";
-import "./Filter.css";
+import "../../css/Filter.css";
 import { ButtonGroup, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
 export default function FilterV2() {

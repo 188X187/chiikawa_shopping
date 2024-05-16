@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 
 export default function DeatilList() {
 
-  const { data, setDetail } = useContext(DataContext);
+  const { setDetail } = useContext(DataContext);
 
   const [random, setRandom] = useState([]);
 
-  const randomNum = Math.floor(Math.random() * data.length);
+  const randomNum = Math.floor((Math.random() * 99) + 1);
 
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
   useEffect(() => {
-    fetch(`/v1/search/shop?query=치이카와$&filter=used:false&display=6&start=1${randomNum}`,
+    fetch(`/v1/search/shop?query=치이카와$&filter=used:false&display=6&start=${randomNum}`,
       {
         method: "GET",
         headers: {
@@ -33,14 +33,14 @@ export default function DeatilList() {
     <div style={{ margin: '0 auto', padding: '4%' }}>
       <h3 style={{ paddingBottom: '2%' }}>추천 상품</h3>
       <Carousel>
-        {[...Array(Math.ceil(random.length / 3))].map((_, slideIndex) => (
+        {[...Array(Math.ceil(random.length / 3))].map((a, slideIndex) => (
           <Carousel.Item>
             <Row xs={1} md={3} className="g-4">
               {random.slice(slideIndex * 3, (slideIndex + 1) * 3).map((item, index) => (
                 <Col key={index} className="d-flex justify-content-center align-items-center">
                   <Card style={{ width: '16rem', height: '28rem' }}>
                     <Link to={'/detail'} onClick={() => { setDetail(item) }}>
-                      <Card.Img variant="top" src={item.image} className="img-fluid" />
+                      <Card.Img variant="top" src={item.image} className="img-fluid" style={{height: '15rem'}}/>
                     </Link>
 
                     <Card.Body>
