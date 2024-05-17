@@ -20,7 +20,7 @@ function GlobalNav() {
         <>
             <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
                 <Container fluid>
-                    <Navbar.Brand href="/">귀여운 치이카와</Navbar.Brand>
+                    <Navbar.Brand href="/"><img style={{height: '80px'}} src='https://chiikawamarket.jp/cdn/shop/files/welcome_320x.png?v=16266376846941523964' /></Navbar.Brand>
                     <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                     <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${expand}`}
