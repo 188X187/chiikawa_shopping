@@ -1,11 +1,39 @@
+/* .App {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-image: url(../public/images/background_pattern.webp);
+  background-size: 30%;
+} */
+
 .App {
+  position: relative;
+  /* 필요한 경우 */
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.App::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(../public/images/background_pattern.webp);
+  background-size: 30%;
+  /* 이미지 크기를 50%로 조정 */
+  opacity: 0.3;
+  /* 투명도 0.5로 조정 */
+  z-index: -1;
+  /* 배경으로 보내기 */
+}
+
 .navbar-nav a {
   font-size: 1.15rem;
+  color: white;
+  font-weight: bold;
 }
 
 .main-img img {
@@ -29,3 +57,4 @@ a {
   font-size: .95rem;
   word-break: keep-all;
 }
+

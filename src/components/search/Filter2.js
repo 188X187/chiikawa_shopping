@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import { DataContext } from '../../MainData';
 import { ButtonGroup, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import '../../css/Filter.css'
 
 export default function FilterV2() {
     const { setFilter, data, setParams, search, setSearch } = useContext(DataContext);
@@ -18,7 +19,7 @@ export default function FilterV2() {
     dataCopy1.map((item) => filterCategory.push(item.category3));
 
     const priceTitle = ["0~10000", "10000~20000", "20000~30000", "30000~40000", "40000~50000", "50000~1000000000"];
-    const priceTitle2 = ["0원~10,000원", "10,000원~20,000원", "20,000원~30,000원", "30,000원~40,000원", "40,000원~50,000원", "50,000원~1,000,000,000원"];
+    const priceTitle2 = ["~10,000원", "10,000원~20,000원", "20,000원~30,000원", "30,000원~40,000원", "40,000원~50,000원", "50,000원~"];
     const startPrice = ["0", "10000", "20000", "30000", "40000", "50000"];
     const endPrice = ["10000", "20000", "30000", "40000", "50000", "1000000000"];
 
@@ -35,8 +36,8 @@ export default function FilterV2() {
     };
 
     return (
-        <Accordion defaultActiveKey={['0']} alwaysOpen>
-            <Accordion.Item eventKey="0" alwaysOpen>
+        <Accordion defaultActiveKey={['0']} alwaysOpen >
+            <Accordion.Item eventKey="0" alwaysOpen >
                 <Accordion.Header>카테고리</Accordion.Header>
                 <Accordion.Body>
                     <div className='filter'>

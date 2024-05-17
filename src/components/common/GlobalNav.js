@@ -9,6 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchModal from '../search/SearchModal';
 import { DataContext } from '../../MainData';
 import { Badge } from 'react-bootstrap';
+import '../../css/GlobalNav.css'
 
 function GlobalNav() {
     const { carts } = useContext(DataContext);

@@ -6,3 +6,9 @@
 .filterDummy {
     width: 150px;
 }
+
+.accordion-button,
+.collapsed {
+    background-color: rgb(255, 255, 204);
+}
+
