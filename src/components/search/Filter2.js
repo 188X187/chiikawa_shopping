@@ -46,7 +46,23 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectedCateBtn === "전체" ? "success" : "outline-success"}
                                         onClick={() => {
-                                            setCategory(initData)
+                                            setSelectedCateBtn("전체")
+                                            if (priceCheck == "") {
+                                                setCategoryCheck("");
+                                                const filterCopy = [...filter];
+                                                setFilter(filterCopy);
+                                            } else {
+                                                setCategoryCheck("");
+                                                const filterCopy = [...filter];
+                                                const parts = priceCheck.split("~");
+                                                const update = filterCopy.filter((item) => {
+                                                    return (
+                                                        parseInt(parts[0]) <= parseInt(item.lprice) &&
+                                                        parseInt(item.lprice) < parseInt(parts[1])
+                                                    );
+                                                });
+                                                setFilter(update);
+                                            }
                                         }}>
                                         전체
                                     </ToggleButton>
