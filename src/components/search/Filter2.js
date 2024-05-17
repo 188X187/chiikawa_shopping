@@ -37,8 +37,6 @@ export default function FilterV2() {
     return (
         <Accordion defaultActiveKey={['0']} alwaysOpen>
             <Accordion.Item eventKey="0" alwaysOpen>
-
-
                 <Accordion.Header>카테고리</Accordion.Header>
                 <Accordion.Body>
                     <div className='filter'>

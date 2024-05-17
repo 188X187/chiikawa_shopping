@@ -41,7 +41,6 @@ const MainData = ({ children }) => {
       .then((json) => {
         setData(json.items);
         setFilter(json.items);
-        setData(json.items)
       });
   };
 
@@ -62,7 +61,7 @@ const MainData = ({ children }) => {
   }, [carts]);
 
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, category, setCategory }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, category, setcategory }}>
       {children}
     </DataContext.Provider>
   );
