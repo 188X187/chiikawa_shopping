@@ -4,6 +4,10 @@
   margin: 0 auto;
 }
 
+.main-img img {
+  height: 800px;
+}
+
 .accordion {
   padding-bottom: 3%;
 }
