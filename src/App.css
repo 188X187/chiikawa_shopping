@@ -4,6 +4,10 @@
   margin: 0 auto;
 }
 
+.navbar-nav a {
+  font-size: 1.15rem;
+}
+
 .main-img img {
   height: 800px;
 }
