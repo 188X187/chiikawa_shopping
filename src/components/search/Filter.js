@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { DataContext } from "../../MainData";
 import FilterPrice from "./FilterPrice";
-import "./Filter.css";
+import "../../css/Filter.css";
 
 export default function Filter() {
     const { setFilter, data, setParams } = useContext(DataContext);

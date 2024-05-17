@@ -63,7 +63,7 @@ const CartList = ({item, handleCheck, isChecked}) => {
                 <div className={styles.cart_product_info}>
                     <p className={styles.seller_store}>{item.title.replace(/[<b></b>]/g, '')}</p>
                     <p className={styles.price}>{Number(item.lprice).toLocaleString()}원</p>
-                    <p className={styles.delivery}>택배배송 / 무료배송</p>
+                    <p className={styles.delivery}>택배배송 / 국내배송</p>
                 </div>
             </div>
             <div className={styles.cart_product_count}>
