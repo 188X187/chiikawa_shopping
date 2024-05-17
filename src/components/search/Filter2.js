@@ -114,7 +114,7 @@ export default function FilterV2() {
                                 </ToggleButtonGroup>
                             ))}
                         </ButtonGroup>
-                        <li>
+                        {/* <li>
                             <ButtonGroup>
                                 <ToggleButtonGroup type="radio" name="price">
                                     <ToggleButton
@@ -135,7 +135,7 @@ export default function FilterV2() {
                                     </ToggleButton>
                                 </ToggleButtonGroup>
                             </ButtonGroup>
-                        </li>
+                        </li> */}
                     </div>
                 </Accordion.Body>
             </Accordion.Item>
