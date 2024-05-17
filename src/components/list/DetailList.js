@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 
 export default function DeatilList() {
 
+  // MainData에서 데이터 가져오기
   const { setDetail } = useContext(DataContext);
 
+  // 랜덤값 초기화
   const [random, setRandom] = useState([]);
 
+  // 랜덤 번호
   const randomNum = Math.floor((Math.random() * 99) + 1);
 
   const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -30,12 +33,15 @@ export default function DeatilList() {
   }, [])
 
   return (
+    // 추천 상품 슬라이드
     <div style={{ margin: '0 auto', padding: '4%' }}>
       <h3 style={{ paddingBottom: '2%' }}>추천 상품</h3>
       <Carousel>
+        {/* 슬라이드 개수 */}
         {[...Array(Math.ceil(random.length / 3))].map((a, slideIndex) => (
           <Carousel.Item>
             <Row xs={1} md={3} className="g-4">
+              {/* 슬라이드 안 아이템 */}
               {random.slice(slideIndex * 3, (slideIndex + 1) * 3).map((item, index) => (
                 <Col key={index} className="d-flex justify-content-center align-items-center">
                   <Card style={{ width: '16rem', height: '28rem' }}>
