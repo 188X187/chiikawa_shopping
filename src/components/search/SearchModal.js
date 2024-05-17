@@ -83,6 +83,7 @@ export default function SearchModal(props) {
                         search.map((item, index) => {
                             return (
                                 <>
+                                    <Link to='list'>
                                     <Button
                                         variant="dark"
                                         key={index}
@@ -91,6 +92,7 @@ export default function SearchModal(props) {
                                             props.setModal(!props.modal)
                                         }}
                                         style={{ margin: "20px" }}>{item}</Button>
+                                        </Link>
                                 </>
                             )
                         })
