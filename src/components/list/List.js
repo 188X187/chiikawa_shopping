@@ -33,12 +33,12 @@ export default function List() {
                 {filter.slice(startIndex, endIndex).map((item, index) => (
                     <Col key={index} className="d-flex justify-content-center align-items-center">
                         <Card style={{ width: '18rem', height: '32rem' }}>
-                            <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                            <Link to={'/detail'} onClick={() => { setDetail(item); window.scrollTo(0, 0); }}>
                                 <Card.Img variant="top" src={item.image} className="img-fluid" style={{ height: '18rem' }} />
                             </Link>
 
                             <Card.Body>
-                                <Link to={'/detail'} onClick={() => { setDetail(item) }}>
+                                <Link to={'/detail'} onClick={() => { setDetail(item); window.scrollTo(0, 0); }}>
                                     <Card.Title style={{ wordBreak: 'keep-all', height: '6rem' }}>
                                         {item.title.replace(/[<b></b>]/g, '').length > 45 ? `${item.title.replace(/[<b></b>]/g, '').substring(0, 45)}...` : item.title.replace(/[<b></b>]/g, '')}
                                     </Card.Title>
