@@ -51,7 +51,7 @@ const MainData = ({ children }) => {
   const [filter, setFilter] = useState([])
   const [detail, setDetail] = useState('');
   const [params, setParams] = useState('')
-  const [category, setcategory] = useState([]);
+  const [category, setCategory] = useState([]);
   const [carts, setCarts] = useState(() => {
     const savedCarts = localStorage.getItem("carts");
     return savedCarts ? JSON.parse(savedCarts) : [];
@@ -74,6 +74,7 @@ const MainData = ({ children }) => {
       .then((res) => res.json())
       .then((json) => {
         setFilter(json.items);
+        setData(json.items)
       });
   }, [search, detail, params]);
 
@@ -92,7 +93,7 @@ const MainData = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, category, setcategory }}>
+    <DataContext.Provider value={{ search, filter, data, detail, carts, params, setSearch, setFilter, setData, setDetail, setCarts, setParams, category, setCategory }}>
       {children}
     </DataContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import { DataContext } from '../../MainData';
 import FilterPrice from "./FilterPrice";
@@ -7,7 +7,7 @@ import { ButtonGroup, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
 export default function FilterV2() {
 
-    const { setFilter, data, setParams } = useContext(DataContext);
+    const { filter, setFilter, data, setParams, setCategory } = useContext(DataContext);
 
     const [categoryCheck, setCategoryCheck] = useState("");
     const [priceCheck, setPriceCheck] = useState("");
@@ -15,9 +15,16 @@ export default function FilterV2() {
     const [selectedCateBtn, setSelectedCateBtn] = useState(null); // 선택된 버튼의 값을 상태로 관리합니다.
     const [selectePriceBtn, setSelectedPriceBtn] = useState(null); // 선택된 버튼의 값을 상태로 관리합니다.
 
-    const filterCategory = [];
-    const dataCopy1 = [...data];
-    dataCopy1.map((item) => filterCategory.push(item.category3)); // 필터카테고리에 배열을 추가하기 위해서 dataCopy1이 있어야 함
+
+    const category = filter.map((item)=>item.category3)
+    const uniqueCategory = [...new Set(category)] //category3 중복값 제거
+    // 디버깅용
+    // console.log(uniqueCategory)
+
+
+    // const filterCategory = [];
+    // const filterCopy1 = [...filter];
+    // filterCopy1.map((item) => filterCategory.push(item.category3)); // 필터카테고리에 배열을 추가하기 위해서 filterCopy1이 있어야 함
 
     // 가격 정렬 시 필요한 배열
     const priceTitle = ["0~10000", "10000~20000", "20000~30000", "30000~40000", "40000~50000", "50000~1000000000"]
@@ -28,6 +35,8 @@ export default function FilterV2() {
     return (
         <Accordion defaultActiveKey={['0']} alwaysOpen>
             <Accordion.Item eventKey="0" alwaysOpen>
+
+
                 <Accordion.Header>카테고리</Accordion.Header>
                 <Accordion.Body>
                     <div className='filter'>
@@ -37,23 +46,7 @@ export default function FilterV2() {
                                     <ToggleButton
                                         variant={selectedCateBtn === "전체" ? "success" : "outline-success"}
                                         onClick={() => {
-                                            setSelectedCateBtn("전체")
-                                            if (priceCheck == "") {
-                                                setCategoryCheck("");
-                                                const dataCopy = [...data];
-                                                setFilter(dataCopy);
-                                            } else {
-                                                setCategoryCheck("");
-                                                const dataCopy = [...data];
-                                                const parts = priceCheck.split("~");
-                                                const update = dataCopy.filter((item) => {
-                                                    return (
-                                                        parseInt(parts[0]) <= parseInt(item.lprice) &&
-                                                        parseInt(item.lprice) < parseInt(parts[1])
-                                                    );
-                                                });
-                                                setFilter(update);
-                                            }
+                                            setCategory(initData)
                                         }}>
                                         전체
                                     </ToggleButton>
@@ -63,45 +56,20 @@ export default function FilterV2() {
 
                         <ButtonGroup>
                             <li>
-                                {filterCategory.map((item, i) => {
-                                    const isDuplicate = filterCategory.slice(0, i).includes(item); // 카테고리 중복 테스트
-                                    // 카테고리가 중복이 아닐 때
-                                    if (isDuplicate == false) {
+                                {uniqueCategory.map((item, i) => {
                                         return (
                                             <ToggleButtonGroup type='radio' name='category' key={i}>
                                                 <ToggleButton
                                                     variant={selectedCateBtn === item ? "success" : "outline-success"}
                                                     onClick={() => {
                                                         setSelectedCateBtn(item)
-                                                        if (priceCheck === "") {
-                                                            setCategoryCheck(item);
-                                                            const dataCopy = [...data];
-                                                            const update = dataCopy.filter(
-                                                                (data) => data.category3 == item
-                                                            );
-                                                            setFilter(update);
-                                                        } else {
-                                                            setCategoryCheck(item);
-                                                            const dataCopy = [...data];
-                                                            const update = dataCopy.filter(
-                                                                (data) => data.category3 == item
-                                                            );
-                                                            const parts = priceCheck.split("~");
-                                                            const update2 = update.filter((item) => {
-                                                                return (
-                                                                    parseInt(parts[0]) <= parseInt(item.lprice) &&
-                                                                    parseInt(item.lprice) < parseInt(parts[1])
-                                                                );
-                                                            });
-                                                            setFilter(update2);
-                                                        }
-                                                    }}>
+                                                            setCategory(item)
+                                                        }}>
                                                     {item}
                                                 </ToggleButton>
                                             </ToggleButtonGroup>
                                         )
                                     }
-                                }
                                 )}
                             </li>
                         </ButtonGroup>
@@ -122,12 +90,12 @@ export default function FilterV2() {
                                             setSelectedPriceBtn("전체")
                                             if (categoryCheck == "") {
                                                 setPriceCheck("");
-                                                const dataCopy = [...data];
-                                                setFilter(dataCopy);
+                                                const filterCopy = [...filter];
+                                                setFilter(filterCopy);
                                             } else {
                                                 setPriceCheck("");
-                                                const dataCopy = [...data];
-                                                const update = dataCopy.filter((item) => {
+                                                const filterCopy = [...filter];
+                                                const update = filterCopy.filter((item) => {
                                                     return item.category3 == categoryCheck
                                                 });
 
@@ -149,8 +117,8 @@ export default function FilterV2() {
                                             setSelectedPriceBtn(title);
                                             if (categoryCheck === "") {
                                                 setPriceCheck(title);
-                                                const dataCopy = [...data];
-                                                const update = dataCopy.filter((item) => {
+                                                const filterCopy = [...filter];
+                                                const update = filterCopy.filter((item) => {
                                                     return (
                                                         parseInt(startPrice[index]) <= parseInt(item.lprice) &&
                                                         parseInt(item.lprice) < parseInt(endPrice[index])
@@ -159,8 +127,8 @@ export default function FilterV2() {
                                                 setFilter(update);
                                             } else {
                                                 setPriceCheck(title);
-                                                const dataCopy = [...data];
-                                                const update = dataCopy.filter((item) => {
+                                                const filterCopy = [...filter];
+                                                const update = filterCopy.filter((item) => {
                                                     return (
                                                         parseInt(startPrice[index]) <= parseInt(item.lprice) &&
                                                         parseInt(item.lprice) < parseInt(endPrice[index])
