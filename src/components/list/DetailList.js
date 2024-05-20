@@ -19,7 +19,7 @@ export default function DeatilList() {
   const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
   useEffect(() => {
-    fetch(`/v1/search/shop?query=치이카와$&filter=used:false&display=9&start=${randomNum}`,
+    fetch(`/v1/search/shop?query=치이카와$&filter=used:false&display=6&start=${randomNum}`,
       {
         method: "GET",
         headers: {
