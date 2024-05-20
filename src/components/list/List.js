@@ -21,7 +21,10 @@ export default function List() {
 
     // 데이터가 비어 있는지 확인
     if (!filter || filter.length === 0) {
-        return <div>No filter available</div>;
+        return <div style={{ padding: '5%' }}>
+            <img src="https://item.kakaocdn.net/do/0a35434399d776f8f6b17ddccdf06835effd194bae87d73dd00522794070855d" />
+            <h5>상품이 존재하지 않습니다.</h5>
+        </div>;
     }
 
 
