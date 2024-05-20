@@ -63,6 +63,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+  background-color: white;
 }
 
 .cart_product_list input[type="checkbox"] {
@@ -153,8 +154,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #c4c4c4;
-  border-top:none;
-  border-bottom:none;
+  border-top: none;
+  border-bottom: none;
 }
 
 .cart_product_count .count span {
@@ -239,14 +240,14 @@
   background: #f2f2f2;
 }
 
-.total .total_price, 
+.total .total_price,
 .total .sale,
 .total .delivery,
 .total .payment {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .total_price .cart_product_total_price,
@@ -351,6 +352,7 @@
 }
 
 @media (max-width: 1280px) {
+
   .tab_title,
   .cart_product_list,
   .total {
@@ -363,6 +365,7 @@
     display: flex;
     padding-left: 50px;
   }
+
   .tab_title span {
     display: none;
   }
@@ -379,6 +382,7 @@
     justify-content: center;
     align-items: center;
   }
+
   .cart_product_wrap {
     padding: 15px;
   }
@@ -406,6 +410,7 @@
   .pay_plus {
     display: none;
   }
+
   .total {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
