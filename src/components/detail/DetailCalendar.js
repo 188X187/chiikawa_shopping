@@ -49,7 +49,10 @@ function Calendar(props) {
                                     key={colIndex}
                                     // 오늘,선택한 날짜에 테두리 스타일
                                     className={`border text-center p-2 ${date === today ? 'border-primary' : ''} ${date === selectedDate ? 'bg-success text-white' : ''}`} 
-                                    onClick={() => handleDateClick(date)}
+                                    onClick={() => {
+                                        setSelectedDate(date);
+                                        console.log("Selected Date:", date);
+                                        props.setDeliveryDate(date);}}
                                     style={{ cursor: 'pointer' }}
                                 >
                                     {date}
